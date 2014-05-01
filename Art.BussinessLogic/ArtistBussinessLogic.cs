@@ -44,7 +44,7 @@ namespace Art.BussinessLogic
 
             if (professionId.HasValue)
             {
-                query.Where(i => i.Professions.Any(p => p.Id == professionId.Value));
+                query = query.Where(i => i.Professions.Any(p => p.Id == professionId.Value));
             }
 
             query = query.OrderBy(i => i.Id);

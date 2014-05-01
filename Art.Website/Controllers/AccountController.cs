@@ -49,7 +49,7 @@ namespace Art.Website.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View(new LoginModel());
         }
 
         //
@@ -81,7 +81,7 @@ namespace Art.Website.Controllers
                         break;
                 }
             }
-            return View();
+            return View(model);
         }
 
         //
