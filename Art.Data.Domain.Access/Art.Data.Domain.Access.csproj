@@ -47,6 +47,11 @@
     <Compile Include="Initializers\ArtDropCreateDatabaseIfModelChanges.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Mapping\ArtistMap.cs" />
+    <Compile Include="Mapping\Artwork\ArtMaterialMap.cs" />
+    <Compile Include="Mapping\Artwork\ArtTechniqueMap.cs" />
+    <Compile Include="Mapping\Artwork\Artwork.cs" />
+    <Compile Include="Mapping\Artwork\ArtShapeMap.cs" />
+    <Compile Include="Mapping\Artwork\ArtworkTypeMap.cs" />
     <Compile Include="Mapping\ProfessionMap.cs" />
     <Compile Include="Mapping\GenreMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />

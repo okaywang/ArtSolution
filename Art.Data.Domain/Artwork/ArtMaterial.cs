@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class User:BaseEntity
+    public class ArtMaterial : BaseEntity
     {
+        [MaxLength(50)]
+        [Required]
         public string Name { get; set; }
-        [MaxLength(60)]
-        public string LoginName { get; set; }
-        public string Password { get; set; }
-        public string Position { get; set; }
-        public string Contact { get; set; }
+         
+        public ArtworkType ArtworkType { get; set; }
     }
 }

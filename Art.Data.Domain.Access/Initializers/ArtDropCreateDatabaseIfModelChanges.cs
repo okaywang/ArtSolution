@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,7 +64,53 @@ namespace Art.Data.Domain.Access.Initializers
 
             context.Set<User>().Add(user);
 
-            context.SaveChanges();
+
+            var typeName = "artworkType1";
+            var artworkType = new ArtworkType()
+            {
+                Name = "artworkType1"
+            };
+            artworkType.ArtMaterials = new List<ArtMaterial>();
+            artworkType.ArtMaterials.Add(new ArtMaterial
+            {
+                Name = typeName + "-material-1"
+            });
+            //artworkType.ArtMaterials.Add(new ArtMaterial
+            //{
+            //    Name = typeName + "-material-2"
+            //});
+            context.Set<ArtworkType>().Add(artworkType);
+
+            try
+            {
+                context.SaveChanges();
+
+                var at = context.Set<ArtworkType>().First();
+                at.ArtMaterials.Add(new ArtMaterial
+                {
+                    Name = "dddd"
+                });
+                context.SaveChanges();
+
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            
+            }
+
+            
+
+
             //base.Seed(context);
         }
     }

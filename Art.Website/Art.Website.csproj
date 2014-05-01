@@ -190,6 +190,7 @@
     <Compile Include="Common\Config\ConfigSettings.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
+    <Compile Include="Controllers\ArtworkController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\WorkartController.cs" />
@@ -202,6 +203,9 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArtistModel.cs" />
+    <Compile Include="Models\ArtMaterialModel.cs" />
+    <Compile Include="Models\ArtShapeModel.cs" />
+    <Compile Include="Models\ArtTechniqueModel.cs" />
     <Compile Include="Models\CommonModel\FileUploadModel.cs" />
     <Compile Include="Models\CommonModel\SaveResult.cs" />
     <Compile Include="Models\PageModel\ArtistEditModel.cs" />
@@ -213,6 +217,7 @@
     <Compile Include="Models\Translators\TranslatorBase.cs" />
     <Compile Include="Models\Views\AristManage\ArtistItem.cs" />
     <Compile Include="Models\Views\AristManage\SearchCriteria.cs" />
+    <Compile Include="Models\Views\Artwork\ArtworkTypesModel.cs" />
     <Compile Include="Models\Views\Home\SummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -349,6 +354,7 @@
     <Content Include="Views\Artist\List.cshtml" />
     <Content Include="Views\Artist\_Detail.cshtml" />
     <Content Include="Views\Artist\_List.cshtml" />
+    <Content Include="Views\Artwork\Types.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

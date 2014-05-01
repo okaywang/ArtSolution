@@ -15,7 +15,7 @@ using WebExpress.Website.Exceptions;
 
 namespace Art.Website.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ArtistController : Controller
     {
         public ActionResult Index()

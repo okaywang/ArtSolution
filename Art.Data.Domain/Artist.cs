@@ -16,27 +16,27 @@ namespace Art.Data.Domain
             SkilledGenres = new List<Genre>();
         }
 
-        [StringLength(30)]
+        [MaxLength(30)]
         public string Name { get; set; }
 
         public DateTime? Birthday { get; set; }
 
         public DateTime? Deathday { get; set; }
 
-        [StringLength(30)]
+        [MaxLength(30)]
         public string School { get; set; }
 
         public bool IsDeleted { get; set; }
 
         public bool IsPublic { get; set; }
 
-        [StringLength(50)]
+        [MaxLength(50)]
         public string AvatarFileName { get; set; }
 
-        [StringLength(30)]
+        [MaxLength(30)]
         public string Masterpiece { get; set; }
 
-        [StringLength(30)]
+        [MaxLength(30)]
         public string PrizeItems { get; set; }
 
         public Genders Gender { get; set; }

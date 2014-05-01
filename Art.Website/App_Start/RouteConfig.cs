@@ -16,7 +16,7 @@ namespace Art.Website
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Artist", action = "List", id = UrlParameter.Optional }
+                defaults: new { controller = "Artwork", action = "Types", id = UrlParameter.Optional }
             );
         }
     }

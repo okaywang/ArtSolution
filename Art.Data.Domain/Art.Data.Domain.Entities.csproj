@@ -41,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artist.cs" />
+    <Compile Include="Artwork\ArtTechnique.cs" />
+    <Compile Include="Artwork\Artwork.cs" />
+    <Compile Include="Artwork\ArtworkType.cs" />
+    <Compile Include="Artwork\ArtMaterial.cs" />
+    <Compile Include="Artwork\ArtShape.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="BasicEnums\Degree.cs" />
     <Compile Include="BasicEnums\Genders.cs" />
