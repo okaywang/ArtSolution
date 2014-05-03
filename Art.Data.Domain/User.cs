@@ -10,7 +10,7 @@ namespace Art.Data.Domain
     public class User:BaseEntity
     {
         public string Name { get; set; }
-        [MaxLength(60)]
+        [MaxLength(40)]
         public string LoginName { get; set; }
         public string Password { get; set; }
         public string Position { get; set; }

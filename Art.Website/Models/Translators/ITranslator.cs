@@ -11,6 +11,6 @@ namespace Art.Website.Models
         TResult Translate(T from);
         T Translate(TResult from);
 
-        IList<TResult> Translate(IList<T> froms);
+        IList<TResult> Translate(ICollection<T> froms);
     }
 }

@@ -23,6 +23,11 @@ function AdapterClass() {
         controlSelector: ".date"
     };
 
+    _self.datetimeControl = {
+        valueField: "datetime",
+        controlSelector: ".datetime"
+    };
+
     _self.simpleDropdown = {
         valueField: "value",
         controlSelector: "select"

@@ -1,0 +1,232 @@
+﻿@model ArtworkEditModel
+@{    
+	Func<Expression<Func<ArtworkEditModel, object>>,string> PropName = WebExpress.Core.Expressions.PropertyName<Art.Website.Models.ArtworkEditModel>.For;
+	Layout = "~/Views/Shared/_ArtLayout.cshtml";
+	ViewBag.Title = "art worktype manage";
+}
+<script type="text/javascript" src="http://192.168.1.118:8080/ysp-shop/admin/js/datepicker.js"></script>
+<link rel="stylesheet" href="http://192.168.1.118:8080/ysp-shop/admin/css/datepicker.css" />
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/Views/ArtworkEdit.js"></script>
+<script src="~/Scripts/Extension/kendo.Extension.js"></script>
+<script src="~/Scripts/webExpress/webExpress.controls.adpaters.js"></script>
+
+<div class="conterbox addartwork">
+	<h2 class="crumbs">您所在位置：艺术家管理 > 添加作品
+	</h2>
+	<div class="addbox">
+		<form action="/Files.axd" method="post" enctype="multipart/form-data" target="iframeFileUpload">
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.Name)" control-type="simpleTextbox">
+				<dt><i>*</i>作品名称:</dt>
+				<dd>
+					<input type="text" name="" value="" class="inp" />
+					@*<span class="t-errormessage">请填写作品名称</span>*@
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.ArtistId)" control-type="simpleDropdown">
+				<dt><i>*</i>所属作者:</dt>
+				<dd>
+					<select name="">
+						<option value="">未选</option>
+						@foreach (var item in Model.SourceArtists)
+						{
+							<option value="@item.Id">@item.Name</option>
+						}
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group" property-name="@PropName(i=>i.Artwork.Institution)" control-type="simpleTextbox">
+				<dt><i>*</i>作品目前所属机构:</dt>
+				<dd>
+					<input type="text" name="" value="" class="inp" /></dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.Size)" control-type="simpleTextbox">
+				<dt><i>*</i>作品大小:</dt>
+				<dd>
+					<input type="text" name="" value="" class="inp" /></dd>
+			</dl>
+			<dl class="clearfix control-group mandatory">
+				<dt><i>*</i>材质:</dt>
+				<dd>
+					<select name="" property-name="@PropName(i=>i.Artwork.ArtMaterialId)" control-type="simpleDropdown">
+						<option value="">未选</option>
+						@*@foreach (var item in Model.SourceGenres)
+						{
+							<option value="@item.Id">@item.Name</option>    
+						}*@
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.PeriodId)" control-type="simpleDropdown">
+				<dt><i>*</i>创作年代:</dt>
+				<dd>
+					<select name="">
+						<option value="">未选</option>
+						@foreach (var item in Model.SourceArtPeriods)
+						{
+							<option value="@item.Id">@item.Name</option>    
+						}
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.ArtworkTypeId)" control-type="simpleDropdown">
+				<dt><i>*</i>作品分类:</dt>
+				<dd>
+					<select name="">
+						<option value="">未选</option>
+						@foreach (var item in Model.SourceArtworkTypes)
+						{
+							<option value="@item.Id">@item.Name</option>    
+						}
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.GenreId)" control-type="simpleDropdown">
+				<dt><i>*</i>题材:</dt>
+				<dd>
+					<select name="">
+						<option value="">未选</option>
+						@foreach (var item in Model.SourceGenres)
+						{
+							<option value="@item.Id">@item.Name</option>    
+						}
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group" property-name="@PropName(i=>i.Artwork.ArtShapeId)" control-type="simpleDropdown">
+				<dt><i>*</i>形制:</dt>
+				<dd>
+					<select name="">
+						<option value="">未选</option>
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group" property-name="@PropName(i=>i.Artwork.ArtTechniqueId)" control-type="simpleDropdown">
+				<dt><i>*</i>技法:</dt>
+				<dd>
+					<select name="">
+						<option value="">未选</option>
+					</select>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group" property-name="@PropName(i=>i.Artwork.CreationInspiration)" control-type="simpleTextarea">
+				<dt><i>*</i>创作灵感:</dt>
+				<dd>
+					<textarea class="awardsinp"></textarea>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.SuitablePlaceIds)" control-type="simpleCheckbox">
+				<dt><i>*</i>适用空间:</dt>
+				<dd class="checkboxjj">
+					@foreach (var item in Model.SourceArtPlaces)
+					{
+						<span>
+							<input type="checkbox" name="" value="@item.Id" />
+							@item.Name</span>    
+					}
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory">
+				<dt><i>*</i>作品图片</dt>
+				<dd>
+					<input type="file" type="" name="" />
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.AuctionTypeId)" control-type="simpleRadioButton">
+				<dt><i>*</i>拍卖方式:</dt>
+				<dd class="checkboxjj">
+					@foreach (var item in Model.SourceAuctionTypes)
+					{
+						<span>
+							<input type="radio" name="" value="@item.Id" />
+							@item.Name</span>                        
+					}
+				</dd>
+			</dl>
+			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.AuctionPrice)" control-type="simpleTextbox">
+				<dt><i>*</i>拍卖价格:</dt>
+				<dd>
+					<input type="text" name="" value="" class="inp" />元</dd>
+			</dl>
+			<dl class="clearfix control-group datetime" property-name="@PropName(i=>i.Artwork.StartDateTime)"  control-type="datetimeControl">
+				<dt><i>*</i>开拍时间:</dt>
+				<dd>
+					<input type="text"  class="datepicker" id="@PropName(i=>i.Artwork.StartDateTime)" name="@PropName(i=>i.Artwork.StartDateTime)" readonly="readonly" class="inp">
+					日
+					<select class="hour" name="@PropName(i=>i.Artwork.StartDateTime)" >
+						@for (int i = 0; i < 24; i++)
+						{
+							<option value="@i">@i.ToString("00")</option>    
+						}
+					</select>
+					时
+					<select class="minute" name="@PropName(i=>i.Artwork.StartDateTime)" >
+						@for (int i = 0; i < 60; i++)
+						{
+							<option value="@i">@i.ToString("00")</option>    
+						}
+					</select>
+					分 
+					<label for="@PropName(i=>i.Artwork.StartDateTime)" generated="true" class="error" ></label>
+				</dd>
+			</dl>
+			<dl class="clearfix control-group datetime" property-name="@PropName(i=>i.Artwork.EndDateTime)"  control-type="datetimeControl">
+				<dt><i>*</i>结束时间:</dt>
+				<dd>
+					<input type="text" class="datepicker" id="@PropName(i=>i.Artwork.EndDateTime)"  name="@PropName(i=>i.Artwork.EndDateTime)" readonly="readonly" class="inp">
+					日
+					<select class="hour" name="@PropName(i=>i.Artwork.EndDateTime)"  >
+						@for (int i = 0; i < 24; i++)
+						{
+							<option value="@i">@i.ToString("00")</option>    
+						}
+					</select>
+					时
+					<select class="minute" name="@PropName(i=>i.Artwork.EndDateTime)" >
+						@for (int i = 0; i < 60; i++)
+						{
+							<option value="@i">@i.ToString("00")</option>    
+						}
+					</select>
+					分
+					<label for="@PropName(i=>i.Artwork.EndDateTime)" generated="true" class="error" ></label>
+				</dd>
+			</dl>
+
+			<p class="yesOrNo">
+				<span>
+					<input type="button" value="上传艺术品" id="J_addbtn" class="btn" /></span>
+
+			</p>
+		</form>
+		<iframe name="iframeFileUpload" onload="iframeFileUpload_onload(this)" style="display: none"></iframe>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		@{ var str = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(Model); }
+		var model = @Html.Raw(@str);
+		  
+		var viewInstance = new art.ui.views.ArtworkEdit();
+
+		viewInstance.init();
+
+		viewInstance.bindModel(model);
+	});
+
+	function iframeFileUpload_onload(iframe){    
+		var doc = iframe.contentDocument || iframe.contentWindow.document;
+		if (doc.body.innerHTML) {
+			var model = $.parseJSON(doc.body.innerHTML);
+			if (model.IsSuccess) {
+				var fullFilePath =webExpress.utility.url.getFullUrl(model.UploadedFileName);
+				viewModel.Artist.set("AvatarFileName",fullFilePath);
+			}
+			else {
+				alert(model.Message);
+			}
+		}
+	}
+</script>

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Expressions\PropertyName.cs" />
     <Compile Include="Graphics\Captcha\ICaptcha.cs" />
     <Compile Include="Graphics\Captcha\LiteralCaptcha.cs" />
     <Compile Include="Graphics\Captcha\ArithmeticCaptcha.cs" />

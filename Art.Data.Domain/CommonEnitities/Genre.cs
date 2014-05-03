@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class Genre : BaseEntity
+    public class Genre : BaseEntity,IIdNameEntity
     { 
         [StringLength(30)]
         public string Name { get; set; }

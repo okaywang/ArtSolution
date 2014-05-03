@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class ArtMaterial : BaseEntity
+    public class ArtMaterial : BaseEntity,IIdNameEntity
     {
         [MaxLength(50)]
         [Required]

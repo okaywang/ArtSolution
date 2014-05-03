@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Art.Website.Models
 {
-    public abstract class TranslatorBase<T, TResult> : ITranslator<T, TResult>
+    public abstract class TranslatorBase<TDomain, TModel> : ITranslator<TDomain, TModel>
     {
-        public IList<TResult> Translate(IList<T> froms)
+        public IList<TModel> Translate(ICollection<TDomain> froms)
         {
-            var tos = new List<TResult>();
-            foreach (T from in froms)
+            var tos = new List<TModel>();
+            foreach (TDomain from in froms)
             {
                 var to = this.Translate(from);
                 tos.Add(to);
@@ -19,9 +19,9 @@ namespace Art.Website.Models
             return tos;
         }
 
-        public abstract TResult Translate(T from);
+        public abstract TModel Translate(TDomain from);
 
 
-        public abstract T Translate(TResult from);
+        public abstract TDomain Translate(TModel from);
     }
 }

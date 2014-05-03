@@ -81,36 +81,44 @@ namespace Art.Data.Domain.Access.Initializers
             //});
             context.Set<ArtworkType>().Add(artworkType);
 
-            try
+
+            context.SaveChanges();
+
+            var at = context.Set<ArtworkType>().First();
+            at.ArtMaterials.Add(new ArtMaterial
             {
-                context.SaveChanges();
-
-                var at = context.Set<ArtworkType>().First();
-                at.ArtMaterials.Add(new ArtMaterial
-                {
-                    Name = "dddd"
-                });
-                context.SaveChanges();
-
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            
-            }
-
-            
+                Name = "dddd"
+            });
+            context.SaveChanges();
 
 
+            var artPlaces = new List<ArtPlace>() { new ArtPlace { Name = "卧室" }, new ArtPlace { Name = "客厅" }, new ArtPlace { Name = "餐厅" }, new ArtPlace { Name = "办公室" } };
+            context.Set<ArtPlace>().AddRange(artPlaces);
+
+            var artPeriods = new List<ArtPeriod>() { new ArtPeriod { Name = "50 n" }, new ArtPeriod { Name = "60 n" }, new ArtPeriod { Name = "70 n" } };
+            context.Set<ArtPeriod>().AddRange(artPeriods);
+
+            var auctionTypes = new List<AuctionType>() { new AuctionType { Name = "一口价 " }, new AuctionType { Name = "竞价拍-上升价格拍" }, new AuctionType { Name = "竞价拍-向下价格拍 " } };
+            context.Set<AuctionType>().AddRange(auctionTypes);
+
+            context.SaveChanges();
+
+            var artwork = new Artwork();
+            artwork.Name = "蒙娜丽莎的微笑";
+            artwork.Artist = context.Set<Artist>().First();
+            artwork.ArtMaterial = context.Set<ArtMaterial>().First();
+            artwork.ArtPeriod = context.Set<ArtPeriod>().First();
+            artwork.ArtworkType = context.Set<ArtworkType>().First();
+            artwork.AuctionType = context.Set<AuctionType>().First();
+            artwork.Genre = context.Set<Genre>().First();
+            artwork.AuctionPrice = 998;
+            artwork.CreationInspiration = "apple";
+            artwork.Institution = "guowuyuan";
+            artwork.SuitableArtPlaces = new List<ArtPlace> { context.Set<ArtPlace>().First() };
+            artwork.Size = "80cm * 90cm";
+
+            context.Set<Artwork>().Add(artwork);
+            context.SaveChanges();
             //base.Seed(context);
         }
     }

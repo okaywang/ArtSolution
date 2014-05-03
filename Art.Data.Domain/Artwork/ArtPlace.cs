@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class ArtTechnique:BaseEntity,IIdNameEntity
+    public class ArtPlace : BaseEntity, IIdNameEntity
     {
-        [MaxLength(50)]
-        [Required]
-        public string Name { get; set; } 
+        public string Name { get; set; }
 
-        public ArtworkType ArtworkType { get; set; }
+        public ICollection<Artwork> Artworks { get; set; }
     }
 }

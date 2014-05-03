@@ -14,7 +14,7 @@ namespace Art.Website.Models
 
     public class ArtTechniqueTranslator : TranslatorBase<ArtTechnique, ArtTechniqueModel>
     {
-        public static readonly ArtMaterialTranslator Instance = new ArtMaterialTranslator();
+        public static readonly ArtTechniqueTranslator Instance = new ArtTechniqueTranslator();
 
         public override ArtTechniqueModel Translate(ArtTechnique from)
         {

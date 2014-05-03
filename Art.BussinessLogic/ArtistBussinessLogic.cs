@@ -32,6 +32,12 @@ namespace Art.BussinessLogic
             return artist;
         }
 
+        public IList<Artist> GetArtists()
+        {
+            var artists = _artistRepository.Table.ToList();
+            return artists;
+        }
+
         public PagedList<Artist> SearchArtists(string namePart, int? professionId, PagingRequest paging)
         {
             Guard.IsNotNull<ArgumentNullException>(paging, "paging");
@@ -72,6 +78,12 @@ namespace Art.BussinessLogic
         {
             var genres = _genreRepository.Table.ToArray();
             return genres;
+        }
+
+        public Genre GetGenre(int id)
+        {
+            var genre = _genreRepository.GetById(id);
+            return genre;
         }
 
         public void Add(Artist artist)

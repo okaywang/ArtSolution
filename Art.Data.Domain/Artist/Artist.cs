@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class Artist : BaseEntity
+    public class Artist : BaseEntity, IIdNameEntity
     {
         public Artist()
         {

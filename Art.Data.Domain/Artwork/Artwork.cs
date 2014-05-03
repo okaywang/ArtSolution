@@ -9,17 +9,26 @@ namespace Art.Data.Domain
     public class Artwork : BaseEntity
     {
         public string Name { get; set; }
-        public Artist Artist { get; set; }
+        public virtual Artist Artist { get; set; }
         public string Institution { get; set; }
         public string Size { get; set; }
 
-        public decimal Price { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
+        public virtual AuctionType AuctionType { get; set; }
+        public decimal AuctionPrice { get; set; }
+        public DateTime? StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
 
-        public ArtworkType ArtworkType { get; set; }
-        public ArtMaterial ArtMaterial { get; set; }
-        public ArtShape ArtShape { get; set; }
-        public ArtTechnique ArtTechnique { get; set; }
+
+        public virtual ArtPeriod ArtPeriod { get; set; }
+        public virtual Genre Genre { get; set; }
+        public string CreationInspiration { get; set; }
+        public string ImageFileName { get; set; }
+
+        public virtual ICollection<ArtPlace> SuitableArtPlaces { get; set; }
+
+        public virtual ArtworkType ArtworkType { get; set; }
+        public virtual ArtMaterial ArtMaterial { get; set; }
+        public virtual ArtShape ArtShape { get; set; }
+        public virtual ArtTechnique ArtTechnique { get; set; }
     }
 }

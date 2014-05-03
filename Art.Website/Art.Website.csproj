@@ -193,7 +193,6 @@
     <Compile Include="Controllers\ArtworkController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\WorkartController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,23 +201,26 @@
       <DependentUpon>FileUploadHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\ArtistModel.cs" />
-    <Compile Include="Models\ArtMaterialModel.cs" />
-    <Compile Include="Models\ArtShapeModel.cs" />
-    <Compile Include="Models\ArtTechniqueModel.cs" />
-    <Compile Include="Models\CommonModel\FileUploadModel.cs" />
-    <Compile Include="Models\CommonModel\SaveResult.cs" />
-    <Compile Include="Models\PageModel\ArtistEditModel.cs" />
+    <Compile Include="Models\Artist\ArtistModel.cs" />
+    <Compile Include="Models\Artwork\ArtMaterialModel.cs" />
+    <Compile Include="Models\Artwork\ArtShapeModel.cs" />
+    <Compile Include="Models\Artwork\ArtTechniqueModel.cs" />
+    <Compile Include="Models\Artwork\ArtworkModel.cs" />
+    <Compile Include="Models\Common\FileUploadModel.cs" />
+    <Compile Include="Models\Common\IdNameModel.cs" />
+    <Compile Include="Models\Common\SaveResult.cs" />
+    <Compile Include="Models\Artist\ArtistEditModel.cs" />
     <Compile Include="Models\GenreModel.cs" />
-    <Compile Include="Models\Views\AristManage\ArtistDetailModel.cs" />
-    <Compile Include="Models\Views\AristManage\ArtistManageModel.cs" />
+    <Compile Include="Models\Artist\ArtistDetailModel.cs" />
+    <Compile Include="Models\Artist\ArtistManageModel.cs" />
     <Compile Include="Models\Translators\ITranslator.cs" />
     <Compile Include="Models\ProfessionModel.cs" />
     <Compile Include="Models\Translators\TranslatorBase.cs" />
-    <Compile Include="Models\Views\AristManage\ArtistItem.cs" />
-    <Compile Include="Models\Views\AristManage\SearchCriteria.cs" />
-    <Compile Include="Models\Views\Artwork\ArtworkTypesModel.cs" />
-    <Compile Include="Models\Views\Home\SummaryModel.cs" />
+    <Compile Include="Models\Artist\ArtistItem.cs" />
+    <Compile Include="Models\Artist\SearchCriteria.cs" />
+    <Compile Include="Models\Artwork\ArtworkEditModel.cs" />
+    <Compile Include="Models\Artwork\ArtworkTypesModel.cs" />
+    <Compile Include="Models\Home\SummaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +305,7 @@
     <Content Include="Scripts\Views\ArtistEdit.js" />
     <Content Include="Scripts\Views\_references.views.js" />
     <Content Include="Scripts\Views\ArtistList.js" />
+    <Content Include="Scripts\Views\ArtworkEdit.js" />
     <Content Include="Scripts\webExpress\webExpress.control.confirmWindow.js" />
     <Content Include="Scripts\webExpress\webExpress.controls.adpaters.js" />
     <Content Include="Scripts\webExpress\webExpress.js" />
@@ -355,6 +358,7 @@
     <Content Include="Views\Artist\_Detail.cshtml" />
     <Content Include="Views\Artist\_List.cshtml" />
     <Content Include="Views\Artwork\Types.cshtml" />
+    <Content Include="Views\Artwork\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
