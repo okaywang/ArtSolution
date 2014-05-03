@@ -13,7 +13,7 @@
 		@{ var str = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(Model); }
 		var model = @Html.Raw(@str);
 		  
-		var viewInstance = new art.ui.views.ArtistEdit();
+		var viewInstance = new art.ui.view.ArtistEdit();
 
 		viewInstance.init();
 

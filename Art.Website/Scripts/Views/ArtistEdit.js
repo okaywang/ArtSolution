@@ -3,13 +3,15 @@
 
 var art = {};
 art.ui = {};
-art.ui.views = {};
+art.ui.view = {};
 
 (function () {
-    art.ui.views.ArtistEdit = ArtistEditClass;
+    art.ui.view.ArtistEdit = ArtistEditClass;
 
     function ArtistEditClass() {
         var _self = this;
+        art.ui.view.ViewBase.call(_self);
+
         function _init() {
             _self.init = init;
 
@@ -35,35 +37,8 @@ art.ui.views = {};
                 $("form").submit();
             });
         }
-        function initDomElement() {
-            var properties = $("[property-name]");
-            var controlAdapters = webExpress.controls.adpaters;
-            for (var i = 0; i < properties.length; i++) {
-                var $property = $(properties[i]);
-                $property.addClass("control-group");
-                var controlType = $property.attr("control-type");
-                var adapter = controlAdapters[controlType];
-                var controls = $property.find("*").andSelf().filter(adapter.controlSelector);
-                for (var j = 0; j < controls.length; j++) {
-                    var control = controls[j];
-                    var propName = $property.attr("property-name");
-                    control.name = propName;
-
-                    var bindStr = "";
-                    if (typeof (adapter.valueField) == "function") {
-                        bindStr = adapter.valueField(propName);
-                    }
-                    else {
-                        bindStr = adapter.valueField + ":" + propName;                        
-                    }
-
-                    if ($property.attr("data-source")) {
-                        bindStr += "," + "source:" + $property.attr("data-source");
-                    }
-
-                    $(control).attr("data-bind", bindStr);
-                }
-            }
+        function initDomElement() { 
+            _self.attachBindingAttribute();
         }
         function initValidation() {
             var options = {

@@ -1,15 +1,16 @@
 ﻿/// <reference path="_references.views.js" />
 /// <reference path="../webExpress/webExpress.controls.adpaters.js" />
+/// <reference path="base/ViewBase.js" />
 
-var art = {};
-art.ui = {};
-art.ui.views = {};
 
 (function () {
-    art.ui.views.ArtworkEdit = ArtworkEditClass;
+    art.ui.view.ArtworkEdit = ArtworkEditClass;
 
     function ArtworkEditClass() {
         var _self = this;
+
+        art.ui.view.ViewBase.call(_self);
+
         function _init() {
             _self.init = init;
 
@@ -40,34 +41,7 @@ art.ui.views = {};
         }
 
         function initDomElement() {
-            var properties = $("[property-name]");
-            var controlAdapters = webExpress.controls.adpaters;
-            for (var i = 0; i < properties.length; i++) {
-                var $property = $(properties[i]);
-                $property.addClass("control-group");
-                var controlType = $property.attr("control-type");
-                var adapter = controlAdapters[controlType];
-                var controls = $property.find("*").andSelf().filter(adapter.controlSelector);
-                for (var j = 0; j < controls.length; j++) {
-                    var control = controls[j];
-                    var propName = $property.attr("property-name");
-                    control.name = propName;
-
-                    var bindStr = "";
-                    if (typeof (adapter.valueField) == "function") {
-                        bindStr = adapter.valueField(propName);
-                    }
-                    else {
-                        bindStr = adapter.valueField + ":" + propName;
-                    }
-
-                    if ($property.attr("data-source")) {
-                        bindStr += "," + "source:" + $property.attr("data-source");
-                    }
-
-                    $(control).attr("data-bind", bindStr);
-                }
-            }
+            _self.attachBindingAttribute();
         }
 
         function initValidation() {
@@ -109,18 +83,6 @@ art.ui.views = {};
             for (var i = 0; i < model.Artwork.SuitablePlaceIds.length; i++) {
                 model.Artwork.SuitablePlaceIds[i] += "";
             }
-
-            //if (model.Artist.Birthday) {
-            //    model.Artist.Birthday = model.Artist.Birthday.substr(0, 10);
-            //}
-
-            //if (model.Artist.Deathday) {
-            //    model.Artist.Deathday = model.Artist.Deathday.substr(0, 10);
-            //}
-
-            //if (model.Artist.AvatarFileName) {
-            //    model.Artist.AvatarFileName = webExpress.utility.url.getFullUrl(model.Artist.AvatarFileName);
-            //}
         }
 
         function save(model) {

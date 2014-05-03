@@ -3,10 +3,10 @@
 
 var art = {};
 art.ui = {};
-art.ui.views = {};
+art.ui.view = {};
 
 (function () {
-    art.ui.views.ArtistList = ArtistListClass;
+    art.ui.view.ArtistList = ArtistListClass;
 
     function ArtistListClass() {
         var _self = this;
