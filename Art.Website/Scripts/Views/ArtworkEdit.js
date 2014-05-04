@@ -24,6 +24,7 @@
             initDomElement();
             initValidation();
         }
+
         function initDomEvent() {
             var adminjs = new adminglass();
             adminjs.datepickerbox('.datepicker');
@@ -36,6 +37,7 @@
             });
 
             $(":file").change(function () {
+                $("form").validate().cancelSubmit = true;
                 $("form").submit();
             });
         }
@@ -75,55 +77,63 @@
             parseModel(model);
 
             viewModel = kendo.observable(model);
+
             viewModel.Artwork.bind("change", function (item) {
                 if (item.field == "Artwork.ArtworkTypeId") {
-                    var artworkTypeId = item.sender.get();
-                    var artworkType = $.grep(viewModel.SourceArtworkTypes, function (element,index) {
+                    var artworkTypeId = item.sender.get(); 
+                    var artworkType = $.grep(model.SourceArtworkTypes, function (element, index) {
                         return element.Id == artworkTypeId;
                     })[0];
 
-                    //var sourceArtMaterials = [{ Id: "", Name: "未选" }];
-                    //if (artworkType) {
-                    //    for (var i = 0; i < artworkType.ArtMaterials.length; i++) {
-                    //        sourceArtMaterials.push(artworkType.ArtMaterials[i]);
-                    //    }
-                    //}
-                    //viewModel.set("SourceArtMaterials", sourceArtMaterials);
-                    //viewModel.Artwork.set("ArtMaterialId", "");
+                    var materials = getArtworkTypeSubItem(artworkType, "ArtMaterials");
+                    viewModel.set("SourceArtMaterials", materials);
+                    viewModel.Artwork.set("ArtMaterialId", "");
 
-                    bindArtworkTypeSubItems(artworkType, "SourceArtMaterials", "ArtMaterials", "ArtMaterialId");
-                    bindArtworkTypeSubItems(artworkType, "SourceArtShapes", "ArtShapes", "ArtShapeId");
-                    bindArtworkTypeSubItems(artworkType, "SourceArtTechniques", "ArtTechniques", "ArtTechniqueId");
+                    var shapes = getArtworkTypeSubItem(artworkType, "ArtShapes");
+                    viewModel.set("SourceArtShapes", shapes);
+                    viewModel.Artwork.set("ArtShapeId", "");
+
+                    var materials = getArtworkTypeSubItem(artworkType, "ArtTechniques");
+                    viewModel.set("SourceArtTechniques", materials);
+                    viewModel.Artwork.set("ArtTechniqueId", ""); 
                 }
             });
 
             kendo.bind($("form"), viewModel);
         }
 
-        function bindArtworkTypeSubItems(artworkType,sourceItemsName,itemsName, itemName){
-            var sourceItems = [{ Id: "", Name: "未选" }];
-            if (artworkType) {
-                for (var i = 0; i < artworkType[itemsName].length; i++) {
-                    sourceItems.push(artworkType[itemsName][i]);
-                }
+        function getArtworkTypeSubItem(artworkType, itemTypeName) {
+            var sourceItems = [{ Id: "", Name: "未选" }];           
+            if (!artworkType) {
+                return sourceItems;
             }
-            viewModel.set(sourceItemsName, sourceItems);
-            viewModel.Artwork.set(itemName, "");
+            for (var i = 0; i < artworkType[itemTypeName].length; i++) {
+                sourceItems.push(artworkType[itemTypeName][i]);
+            }
+            return sourceItems;
         }
-
+         
         function parseModel(model) {
             for (var i = 0; i < model.Artwork.SuitablePlaceIds.length; i++) {
                 model.Artwork.SuitablePlaceIds[i] += "";
             }
 
-            model.SourceArtMaterials = [{ Id: "", Name: "未选" }];
-            model.SourceArtShapes = [{ Id: "", Name: "未选" }];
-            model.SourceArtTechniques = [{ Id: "", Name: "未选" }];
+            if (model.Artwork.ImageFileName) {
+                model.Artwork.ImageFileName = webExpress.utility.url.getFullUrl(model.Artwork.ImageFileName);
+            }
+
+            var artworkType = $.grep(model.SourceArtworkTypes, function (element, index) {
+                return element.Id == model.Artwork.ArtworkTypeId;
+            })[0];
+
+            model.SourceArtMaterials = getArtworkTypeSubItem(artworkType, "ArtMaterials");
+            model.SourceArtShapes = getArtworkTypeSubItem(artworkType, "ArtShapes");
+            model.SourceArtTechniques = getArtworkTypeSubItem(artworkType, "ArtTechniques");
         }
 
         function save(model) {
-            var url = model.Artist.Id > 0 ? "/Artist/Update" : "/Artist/Add";
-            webExpress.utility.ajax.request(url, model.Artist,
+            var url = model.Artwork.Id > 0 ? "/Artwork/Update" : "/Artwork/Add";
+            webExpress.utility.ajax.request(url, model.Artwork,
             function () {
                 alert("success");
             },

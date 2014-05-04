@@ -18,7 +18,7 @@ namespace WebExpress.Core.Paging
         public int PageSize { get; private set; }
 
         public int TotalCount { get; set; }
-
+        public int RecordCount { get; set; }
 
         public int TotalPages
         {

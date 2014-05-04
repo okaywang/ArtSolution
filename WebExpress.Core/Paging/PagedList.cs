@@ -30,6 +30,9 @@ namespace WebExpress.Core
 
             var skipCount = pageIndex * pageSize;
             var data = source.Skip(skipCount).Take(pageSize).ToList();
+
+            PagingResult.RecordCount = data.Count;
+
             this.AddRange(data);
         }
 

@@ -124,6 +124,46 @@ namespace Art.BussinessLogic
             return query.ToList();
         }
 
-        
+        public void Add(Artwork artwork)
+        {
+            _artworkRepository.Insert(artwork);
+        }
+
+        public void Update(Artwork artwork)
+        {
+            _artworkRepository.Update(artwork);
+        }
+
+        public PagedList<Artwork> SearchArtworks(string namePart, int? artworkTypeId, int? artMaterialId, int? artistId, PagingRequest paging)
+        {
+            Guard.IsNotNull<ArgumentNullException>(paging, "paging");
+
+            var query = _artworkRepository.Table;
+            if (!string.IsNullOrEmpty(namePart))
+            {
+                query = query.Where(i => i.Name.Contains(namePart));
+            }
+
+            if (artworkTypeId.HasValue)
+            {
+                query = query.Where(i => i.ArtworkType.Id == artworkTypeId);
+            }
+
+            if (artMaterialId.HasValue)
+            {
+                query = query.Where(i => i.ArtMaterial.Id == artMaterialId);
+            }
+
+            if (artistId.HasValue)
+            {
+                query = query.Where(i => i.Artist.Id == artistId);
+            }
+
+            query = query.OrderBy(i => i.Id);
+
+            var result = new PagedList<Artwork>(query, paging.PageIndex, paging.PageSize);
+
+            return result;
+        }
     }
 }

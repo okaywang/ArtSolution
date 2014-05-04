@@ -24,6 +24,8 @@ namespace Art.Data.Domain
         public string CreationInspiration { get; set; }
         public string ImageFileName { get; set; }
 
+        public bool IsPublic { get; set; }
+
         public virtual ICollection<ArtPlace> SuitableArtPlaces { get; set; }
 
         public virtual ArtworkType ArtworkType { get; set; }

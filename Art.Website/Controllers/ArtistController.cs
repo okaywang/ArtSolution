@@ -1,8 +1,6 @@
 ﻿using Art.BussinessLogic;
 using Art.Data.Domain;
 using Art.Website.Models;
-using Art.Website.Models.Views;
-using Art.Website.Models.Views.AristManage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,17 +107,16 @@ namespace Art.Website.Controllers
             var result = new ResultModel(true, "update successfully!");
 
             return Json(result);
-
         }
         #endregion
 
-        public ActionResult List(SearchCriteria criteria)
+        public ActionResult List(ArtistSearchCriteria criteria)
         {
             var model = GetPagedArtistModel(criteria);
             return PartialView("_List",model);
         }
 
-        private PagedArtistModel GetPagedArtistModel(SearchCriteria criteria)
+        private PagedArtistModel GetPagedArtistModel(ArtistSearchCriteria criteria)
         {
             var artistItems = new List<ArtistItem>();
             var pagedArtists = ArtistBussinessLogic.Instance.SearchArtists(criteria.NamePart, criteria.ProfessionId, criteria.PagingRequest);
@@ -139,7 +136,7 @@ namespace Art.Website.Controllers
         {
             var model = new ArtistManageModel();
 
-            var defaultCriteria = new SearchCriteria(10);
+            var defaultCriteria = new ArtistSearchCriteria(10);
             model.PagedArtists = GetPagedArtistModel(defaultCriteria);
 
             var professions = ArtistBussinessLogic.Instance.GetProfessions();

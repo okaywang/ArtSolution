@@ -202,10 +202,13 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Artist\ArtistModel.cs" />
+    <Compile Include="Models\Artwork\ArtworkManageModel.cs" />
     <Compile Include="Models\Artwork\ArtMaterialModel.cs" />
     <Compile Include="Models\Artwork\ArtShapeModel.cs" />
     <Compile Include="Models\Artwork\ArtTechniqueModel.cs" />
+    <Compile Include="Models\Artwork\ArtworkSimpleModel.cs" />
     <Compile Include="Models\Artwork\ArtworkModel.cs" />
+    <Compile Include="Models\Artwork\ArtworkSearchCriteria.cs" />
     <Compile Include="Models\Common\FileUploadModel.cs" />
     <Compile Include="Models\Common\IdNameModel.cs" />
     <Compile Include="Models\Common\SaveResult.cs" />
@@ -217,7 +220,7 @@
     <Compile Include="Models\ProfessionModel.cs" />
     <Compile Include="Models\Translators\TranslatorBase.cs" />
     <Compile Include="Models\Artist\ArtistItem.cs" />
-    <Compile Include="Models\Artist\SearchCriteria.cs" />
+    <Compile Include="Models\Artist\ArtistSearchCriteria.cs" />
     <Compile Include="Models\Artwork\ArtworkEditModel.cs" />
     <Compile Include="Models\Artwork\ArtworkTypesModel.cs" />
     <Compile Include="Models\Home\SummaryModel.cs" />
@@ -361,10 +364,14 @@
     <Content Include="Views\Artist\_List.cshtml" />
     <Content Include="Views\Artwork\Types.cshtml" />
     <Content Include="Views\Artwork\Edit.cshtml" />
+    <Content Include="Views\Artwork\List.cshtml" />
+    <Content Include="Views\Artwork\_List.cshtml" />
+    <Content Include="Views\Shared\_Pager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Authorization\" />
+    <Folder Include="Scripts\NewFolder1\" />
     <Folder Include="Views\Workart\" />
   </ItemGroup>
   <ItemGroup>

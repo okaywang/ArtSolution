@@ -55,7 +55,7 @@ namespace Art.Website.Models
             to.ArtworkTypeId = from.ArtworkType.Id;
             to.ArtMaterialId = from.ArtMaterial.Id;
             to.ArtShapeId = from.ArtShape == null ? (int?)null : from.ArtShape.Id;
-            to.ArtTechniqueId = from.ArtShape == null ? (int?)null : from.ArtTechnique.Id;
+            to.ArtTechniqueId = from.ArtTechnique == null ? (int?)null : from.ArtTechnique.Id;
 
             to.PeriodId = from.ArtPeriod.Id;
             to.GenreId = from.Genre.Id;
@@ -94,7 +94,8 @@ namespace Art.Website.Models
             to.SuitableArtPlaces = ArtworkBussinessLogic.Instance.GetArtPlaces(from.SuitablePlaceIds);
             if (!string.IsNullOrEmpty(from.ImageFileName))
             {
-                to.ImageFileName = Path.Combine(ConfigSettings.Instance.UploadedFileFolder, from.ImageFileName);
+                //to.ImageFileName = Path.Combine(ConfigSettings.Instance.UploadedFileFolder, from.ImageFileName);
+                to.ImageFileName = new Uri(from.ImageFileName).Segments.Last();
             }
 
             to.AuctionType = ArtworkBussinessLogic.Instance.GetAuctionType(from.AuctionTypeId);

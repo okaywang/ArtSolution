@@ -65,12 +65,61 @@ namespace Art.Website.Controllers
             return View("Edit", model);
         }
 
+        [HttpPost]
+        public JsonResult Add(ArtworkModel model)
+        {
+            var artwork = ArtworkModelTranslator.Instance.Translate(model);
+
+            ArtworkBussinessLogic.Instance.Add(artwork);
+
+            var result = new ResultModel(true, "add successfully!");
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult Update(ArtworkModel model)
+        {
+            var artwork = ArtworkModelTranslator.Instance.Translate(model);
+
+            ArtworkBussinessLogic.Instance.Update(artwork);
+
+            var result = new ResultModel(true, "update successfully!");
+
+            return Json(result);
+        }
+
         public ActionResult Edit(int id)
         {
             var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
             var artworkModel = ArtworkModelTranslator.Instance.Translate(artwork);
             var model = GetArtworkEditModel(artworkModel);
             return View("Edit", model);
+        }
+
+        [HttpGet]
+        public ActionResult List()
+        {
+            var model = new ArtworkManageModel();
+
+            var defaultCriteria = new ArtworkSearchCriteria(10);
+            model.PagedArtworks = GetPagedArtistModel(defaultCriteria);
+             
+            return View(model);
+        }
+
+        private PagedArtworkModel GetPagedArtistModel(ArtworkSearchCriteria criteria)
+        {
+            var artworks = new List<ArtworkSimpleModel>();
+            var pagedArtworks = ArtworkBussinessLogic.Instance.SearchArtworks(criteria.NamePart, criteria.ArtworkTypeId, criteria.ArtMaterialId, criteria.ArtistId, criteria.PagingRequest);
+            foreach (var item in pagedArtworks)
+            {
+                var artwork = ArtworkSimpleModelTranslator.Instance.Translate(item);
+                //artist.CanUnPublish = Art.BussinessLogic.ArtistBussinessLogic.Instance.CanUnpublish(item);
+                artworks.Add(artwork);
+            }
+
+            var model = new PagedArtworkModel(artworks, pagedArtworks.PagingResult);
+            return model;
         }
 
         private ArtworkEditModel GetArtworkEditModel(ArtworkModel artworkModel)

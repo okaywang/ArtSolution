@@ -1,0 +1,109 @@
+﻿@model ArtworkManageModel
+@{
+    Layout = "~/Views/Shared/_ArtLayout.cshtml";
+    ViewBag.Title = "Manage";
+}
+
+
+<div class="conterbox atrworkManage">
+    <h2 class="crumbs">您所在位置：作品管理 > 作品管理
+    </h2>
+    <div class="managebox">
+        <div class="searchbox clearfix">
+            <span class="name">作品名称：<input type="text" value="" name="" class="searchinp" /></span>
+            <span class="fl">作品分类：
+                    <select name="">
+                        <option value="" selected="selected">全部</option>
+                        <option value="">国画</option>
+                        <option value="">水墨画</option>
+                        <option value="">当代画</option>
+                    </select>
+            </span>
+            <span class="tc">作品材质：
+                    <select name="">
+                        <option value="" selected="selected">全部</option>
+                        <option value="">蕾丝</option>
+                        <option value="">帆布</option>
+                    </select>
+            </span>
+            <span class="zz">作者：
+                    <select name="">
+                        <option value="" selected="selected">张三</option>
+                        <option value="">李四</option>
+                        <option value="">小清新</option>
+                    </select>
+            </span>
+            <span class="srarchbtn">
+                <input type="submit" value="搜索" name="" class="btn" /></span>
+        </div>
+        <div class="data">
+            @Html.Partial("_List", Model.PagedArtworks)
+        </div>
+    </div>
+</div>
+
+<!--取消发布 start-->
+<div class="add-openbox" id="J_cancelBox">
+    <h2>取消发布提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定取消发布该作品吗？取消后,则无法在前台显示!
+    </p>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--发布 start-->
+<div class="add-openbox" id="J_issueBox">
+    <h2>发布提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定发布该作品吗？发布后将会在前台显示。
+    </p>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--删除作品 start-->
+<div class="add-openbox" id="J_deletezpBox">
+    <h2>删除作品提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定删除该作品吗？删除后，该作品不可恢复！。请谨慎操作！
+    </p>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //弹框
+        var adminjs = new adminglass();//实例化后台类
+        adminjs.closewinbox();
+
+        //取消发布
+        $('.J_cancelBtn').click(function () {
+            adminjs.openwinbox('#J_cancelBox');
+            return false;
+        });
+
+        //发布
+        $('.J_issueBtn').click(function () {
+            adminjs.openwinbox('#J_issueBox');
+            return false;
+
+        });
+
+        //删除作品
+        $('.J_deletezpBtn').click(function () {
+            adminjs.openwinbox('#J_deletezpBox');
+            return false;
+        });
+
+
+    })
+</script>

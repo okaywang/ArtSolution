@@ -30,6 +30,7 @@
             });
 
             $(":file").change(function () {
+                $("form").validate().cancelSubmit = true;
                 $("form").submit();
             });
         }

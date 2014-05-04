@@ -4,16 +4,16 @@ using System.Linq;
 using System.Web;
 using WebExpress.Core;
 
-namespace Art.Website.Models.Views.AristManage
+namespace Art.Website.Models
 {
-    public class SearchCriteria
+    public class ArtistSearchCriteria
     {
-        public SearchCriteria()
+        public ArtistSearchCriteria()
             : this(20)
         {
 
         }
-        public SearchCriteria(int pageSize)
+        public ArtistSearchCriteria(int pageSize)
         {
             PagingRequest = new PagingRequest(0, pageSize);
         }
