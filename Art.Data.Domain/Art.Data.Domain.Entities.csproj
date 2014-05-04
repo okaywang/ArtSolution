@@ -53,6 +53,7 @@
     <Compile Include="BasicEnums\Genders.cs" />
     <Compile Include="CommonEnitities\Genre.cs" />
     <Compile Include="Artist\Profession.cs" />
+    <Compile Include="ExceptionLog.cs" />
     <Compile Include="IIdNameEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />

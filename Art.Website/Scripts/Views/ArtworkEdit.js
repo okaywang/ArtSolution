@@ -59,11 +59,11 @@
             }
 
             jQuery.validator.addMethod("DateValidate", function (value, element) {
-                if (viewModel.Artwork.EndDateTime <= viewModel.Artwork.StartDateTime) { 
+                if (viewModel.Artwork.EndDateTime <= viewModel.Artwork.StartDateTime) {
                     return false;
                 }
                 return true;
-            },"end datetime should be greater than start datetime");
+            }, "end datetime should be greater than start datetime");
 
             options.rules["Artwork.StartDateTime"] = { DateValidate: true };
             options.rules["Artwork.EndDateTime"] = { DateValidate: true };
@@ -75,14 +75,50 @@
             parseModel(model);
 
             viewModel = kendo.observable(model);
+            viewModel.Artwork.bind("change", function (item) {
+                if (item.field == "Artwork.ArtworkTypeId") {
+                    var artworkTypeId = item.sender.get();
+                    var artworkType = $.grep(viewModel.SourceArtworkTypes, function (element,index) {
+                        return element.Id == artworkTypeId;
+                    })[0];
+
+                    //var sourceArtMaterials = [{ Id: "", Name: "未选" }];
+                    //if (artworkType) {
+                    //    for (var i = 0; i < artworkType.ArtMaterials.length; i++) {
+                    //        sourceArtMaterials.push(artworkType.ArtMaterials[i]);
+                    //    }
+                    //}
+                    //viewModel.set("SourceArtMaterials", sourceArtMaterials);
+                    //viewModel.Artwork.set("ArtMaterialId", "");
+
+                    bindArtworkTypeSubItems(artworkType, "SourceArtMaterials", "ArtMaterials", "ArtMaterialId");
+                    bindArtworkTypeSubItems(artworkType, "SourceArtShapes", "ArtShapes", "ArtShapeId");
+                    bindArtworkTypeSubItems(artworkType, "SourceArtTechniques", "ArtTechniques", "ArtTechniqueId");
+                }
+            });
 
             kendo.bind($("form"), viewModel);
+        }
+
+        function bindArtworkTypeSubItems(artworkType,sourceItemsName,itemsName, itemName){
+            var sourceItems = [{ Id: "", Name: "未选" }];
+            if (artworkType) {
+                for (var i = 0; i < artworkType[itemsName].length; i++) {
+                    sourceItems.push(artworkType[itemsName][i]);
+                }
+            }
+            viewModel.set(sourceItemsName, sourceItems);
+            viewModel.Artwork.set(itemName, "");
         }
 
         function parseModel(model) {
             for (var i = 0; i < model.Artwork.SuitablePlaceIds.length; i++) {
                 model.Artwork.SuitablePlaceIds[i] += "";
             }
+
+            model.SourceArtMaterials = [{ Id: "", Name: "未选" }];
+            model.SourceArtShapes = [{ Id: "", Name: "未选" }];
+            model.SourceArtTechniques = [{ Id: "", Name: "未选" }];
         }
 
         function save(model) {

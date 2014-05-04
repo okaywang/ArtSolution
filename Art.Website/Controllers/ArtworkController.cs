@@ -58,12 +58,25 @@ namespace Art.Website.Controllers
             return View();
         }
 
-
         public ActionResult Add()
         {
-            var artwork = ArtworkBussinessLogic.Instance.GetArtwork(1);
+            var artwork = new ArtworkModel();
+            var model = GetArtworkEditModel(artwork);
+            return View("Edit", model);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
+            var artworkModel = ArtworkModelTranslator.Instance.Translate(artwork);
+            var model = GetArtworkEditModel(artworkModel);
+            return View("Edit", model);
+        }
+
+        private ArtworkEditModel GetArtworkEditModel(ArtworkModel artworkModel)
+        {
             var model = new ArtworkEditModel();
-            model.Artwork = ArtworkModelTranslator.Instance.Translate(artwork);
+            model.Artwork = artworkModel;
 
             var artists = ArtistBussinessLogic.Instance.GetArtists();
             model.SourceArtists = IdNameModelTranslator<Artist>.Instance.Translate(artists);
@@ -82,8 +95,8 @@ namespace Art.Website.Controllers
 
             var auctionTypes = ArtworkBussinessLogic.Instance.GetAuctionTypes();
             model.SourceAuctionTypes = IdNameModelTranslator<AuctionType>.Instance.Translate(auctionTypes);
-
-            return View("Edit", model);
+             
+            return model;
         }
 
     }

@@ -22,6 +22,7 @@ namespace Art.Website.Models
 
         public IList<ArtworkTypeModel> SourceArtworkTypes { get; set; }
 
+        //public IList<IdNameModel> SourceArtMaterials { get; set; }
     }
 
 }

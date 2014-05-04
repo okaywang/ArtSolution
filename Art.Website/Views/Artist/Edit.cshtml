@@ -55,7 +55,7 @@
 						<label for="Artist.Gender" class="error">Please select your gender</label>
 				</dd>
 			</dl>
-			<dl class="birthyear clearfix date" property-name="Artist.Birthday" control-type="dateSelects" >
+			<dl class="birthyear clearfix date mandatory" property-name="Artist.Birthday" control-type="dateSelects" >
 				<dt><i>*</i>出生年月:</dt>
 				<dd>
 					<select name="year">
@@ -115,10 +115,10 @@
 			<dl class="graduate-school clearfix" property-name="Artist.School" control-type="simpleTextbox">
 				<dt><i>*</i>毕业院校:</dt>
 				<dd>
-					<input type="text" name="School" required class="graduate-schoolinp"  />
+					<input type="text" name="School" class="graduate-schoolinp"  />
 				</dd>
 			</dl>
-			<dl class="awards clearfix" property-name="Artist.PrizeItems" control-type="simpleTextarea">
+			<dl class="awards clearfix mandatory" property-name="Artist.PrizeItems" control-type="simpleTextarea">
 				<dt><i>*</i>所获奖项:</dt>
 				<dd>
 					<textarea class="awardsinp"></textarea><span class="t-errormessage hide">请填写得过奖项</span>
@@ -138,7 +138,7 @@
 					<label for="Artist.ProfessionIds" class="error">Please select at least two types of spam.</label>
 				</dd>
 			</dl>
-			<dl class="beGoodAt clearfix" property-name="Artist.SkilledGenreIds" control-type="simpleCheckbox">
+			<dl class="beGoodAt clearfix mandatory" property-name="Artist.SkilledGenreIds" control-type="simpleCheckbox">
 				<dt><i>*</i>擅长:</dt>
 				<dd class="checkboxjj">
 					@for (int i = 0; i < Model.SourceGenres.Length; i++)
@@ -146,24 +146,25 @@
 						<span>
 							<input type="checkbox" value="@Model.SourceGenres[i].Id" />@Model.SourceGenres[i].Name</span>
 					}
-					<span class="t-errormessage hide">请选择擅长</span>
+					@*<span class="t-errormessage hide">请选择擅长</span>*@
+                    <label for="Artist.SkilledGenreIds" class="error t-errormessage">请选择擅长</label>
 				</dd>
 			</dl>
-			<dl class="representative clearfix" property-name="Artist.Masterpiece" control-type="simpleTextbox">
+			<dl class="representative clearfix mandatory" property-name="Artist.Masterpiece" control-type="simpleTextbox">
 				<dt><i>*</i>代表作品</dt>
 				<dd>
 					<input type="text" class="representativeinp" />
 					属性
-					<select name="">
+					<select>
 						<option value="" selected="selected">油画</option>
 						<option value="">国画</option>
 						<option value="">水墨画</option>
 						<option value="">当代画</option>
 					</select>
-					<span class="t-errormessage hide">请填写代表作</span>
+                    <label for="Artist.Masterpiece" class="error t-errormessage">请填写代表作</label>
 				</dd>
 			</dl>
-			<dl class="authorimg clearfix" property-name="Artist.AvatarFileName" control-type="simpleImg">
+			<dl class="authorimg clearfix mandatory" property-name="Artist.AvatarFileName" control-type="simpleImg">
 				<dt><i>*</i>作者头像</dt>
 				<dd>
 					<input type="file" name="avatarImage" /><span class="t-errormessage hide">请选择头像</span>

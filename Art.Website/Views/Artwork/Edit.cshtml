@@ -46,10 +46,10 @@
 				<dd>
 					<input type="text" name="" value="" class="inp" /></dd>
 			</dl>
-			<dl class="clearfix control-group mandatory">
+			<dl class="clearfix control-group mandatory"  data-source="SourceArtMaterials" property-name="@PropName(i=>i.Artwork.ArtMaterialId)" control-type="simpleDropdown">
 				<dt><i>*</i>材质:</dt>
 				<dd>
-					<select name="" property-name="@PropName(i=>i.Artwork.ArtMaterialId)" control-type="simpleDropdown">
+					<select data-value-field="Id" data-text-field="Name" >
 						<option value="">未选</option>
 						@*@foreach (var item in Model.SourceGenres)
 						{
@@ -61,7 +61,7 @@
 			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.PeriodId)" control-type="simpleDropdown">
 				<dt><i>*</i>创作年代:</dt>
 				<dd>
-					<select name="">
+					<select  >
 						<option value="">未选</option>
 						@foreach (var item in Model.SourceArtPeriods)
 						{
@@ -94,18 +94,18 @@
 					</select>
 				</dd>
 			</dl>
-			<dl class="clearfix control-group" property-name="@PropName(i=>i.Artwork.ArtShapeId)" control-type="simpleDropdown">
+			<dl class="clearfix control-group" data-source="SourceArtShapes" property-name="@PropName(i=>i.Artwork.ArtShapeId)" control-type="simpleDropdown">
 				<dt><i>*</i>形制:</dt>
 				<dd>
-					<select name="">
+					<select  data-value-field="Id" data-text-field="Name">
 						<option value="">未选</option>
 					</select>
 				</dd>
 			</dl>
-			<dl class="clearfix control-group" property-name="@PropName(i=>i.Artwork.ArtTechniqueId)" control-type="simpleDropdown">
+			<dl class="clearfix control-group" data-source="SourceArtTechniques" property-name="@PropName(i=>i.Artwork.ArtTechniqueId)" control-type="simpleDropdown">
 				<dt><i>*</i>技法:</dt>
 				<dd>
-					<select name="">
+					<select data-value-field="Id" data-text-field="Name">
 						<option value="">未选</option>
 					</select>
 				</dd>
@@ -127,10 +127,12 @@
 					}
 				</dd>
 			</dl>
-			<dl class="clearfix control-group mandatory">
+			<dl class="clearfix control-group mandatory" property-name="Artwork.ImageFileName" control-type="simpleImg">
 				<dt><i>*</i>作品图片</dt>
 				<dd>
 					<input type="file" type="" name="" />
+					<br />
+					<img src="http://www.baidu.com/img/bdlogo.gif" alt="" />
 				</dd>
 			</dl>
 			<dl class="clearfix control-group mandatory" property-name="@PropName(i=>i.Artwork.AuctionTypeId)" control-type="simpleRadioButton">
@@ -176,7 +178,7 @@
 				<dd>
 					<input type="text" class="datepicker" id="@PropName(i=>i.Artwork.EndDateTime)"  name="@PropName(i=>i.Artwork.EndDateTime)" readonly="readonly" class="inp">
 					日
-					<select class="hour" name="@PropName(i=>i.Artwork.EndDateTime)"  >
+					<select class="hour" name="@PropName(i=>i.Artwork.EndDateTime)" >
 						@for (int i = 0; i < 24; i++)
 						{
 							<option value="@i">@i.ToString("00")</option>    
@@ -197,7 +199,6 @@
 			<p class="yesOrNo">
 				<span>
 					<input type="button" value="上传艺术品" id="J_addbtn" class="btn" /></span>
-
 			</p>
 		</form>
 		<iframe name="iframeFileUpload" onload="iframeFileUpload_onload(this)" style="display: none"></iframe>
@@ -222,7 +223,7 @@
 			var model = $.parseJSON(doc.body.innerHTML);
 			if (model.IsSuccess) {
 				var fullFilePath =webExpress.utility.url.getFullUrl(model.UploadedFileName);
-				viewModel.Artist.set("AvatarFileName",fullFilePath);
+				viewModel.Artwork.set("ImageFileName",fullFilePath);
 			}
 			else {
 				alert(model.Message);

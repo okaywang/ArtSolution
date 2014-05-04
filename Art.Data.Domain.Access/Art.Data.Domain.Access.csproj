@@ -58,6 +58,7 @@
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Mapping\Artwork\ArtPeriodMap.cs" />
     <Compile Include="Mapping\Artwork\ArtPlaceMap.cs" />
+    <Compile Include="Mapping\ExceptionLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

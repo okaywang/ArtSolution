@@ -1,10 +1,6 @@
 ﻿/// <reference path="_references.views.js" />
 /// <reference path="../webExpress/webExpress.controls.adpaters.js" />
 
-var art = {};
-art.ui = {};
-art.ui.view = {};
-
 (function () {
     art.ui.view.ArtistEdit = ArtistEditClass;
 

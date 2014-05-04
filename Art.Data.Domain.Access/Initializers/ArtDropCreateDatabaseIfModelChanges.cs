@@ -75,10 +75,15 @@ namespace Art.Data.Domain.Access.Initializers
             {
                 Name = typeName + "-material-1"
             });
-            //artworkType.ArtMaterials.Add(new ArtMaterial
-            //{
-            //    Name = typeName + "-material-2"
-            //});
+            artworkType.ArtShapes = new List<ArtShape>();
+            artworkType.ArtShapes.Add(new ArtShape
+            {
+                Name = typeName + "-shape-1"
+            });
+            artworkType.ArtShapes.Add(new ArtShape
+            {
+                Name = typeName + "-shape-2"
+            });
             context.Set<ArtworkType>().Add(artworkType);
 
 
@@ -116,8 +121,10 @@ namespace Art.Data.Domain.Access.Initializers
             artwork.Institution = "guowuyuan";
             artwork.SuitableArtPlaces = new List<ArtPlace> { context.Set<ArtPlace>().First() };
             artwork.Size = "80cm * 90cm";
-
+            artwork.StartDateTime = DateTime.Now.AddDays(-3);
+            artwork.EndDateTime = DateTime.Now.AddDays(3);
             context.Set<Artwork>().Add(artwork);
+
             context.SaveChanges();
             //base.Seed(context);
         }
