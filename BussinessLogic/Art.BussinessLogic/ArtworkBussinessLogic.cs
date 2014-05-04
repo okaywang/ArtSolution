@@ -165,5 +165,10 @@ namespace Art.BussinessLogic
 
             return result;
         }
+
+        public void Delete(Artwork artwork)
+        {
+            _artworkRepository.Delete(artwork);
+        }
     }
 }

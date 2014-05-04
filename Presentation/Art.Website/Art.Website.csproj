@@ -209,6 +209,7 @@
     <Compile Include="Models\Artwork\ArtworkSimpleModel.cs" />
     <Compile Include="Models\Artwork\ArtworkModel.cs" />
     <Compile Include="Models\Artwork\ArtworkSearchCriteria.cs" />
+    <Compile Include="Models\Artwork\ArtworkDetailModel.cs" />
     <Compile Include="Models\Common\FileUploadModel.cs" />
     <Compile Include="Models\Common\IdNameModel.cs" />
     <Compile Include="Models\Common\SaveResult.cs" />
@@ -308,7 +309,7 @@
     <Content Include="Scripts\Views\ArtistEdit.js" />
     <Content Include="Scripts\Views\base\ViewBase.js" />
     <Content Include="Scripts\Views\_references.views.js" />
-    <Content Include="Scripts\Views\ArtistList.js" />
+    <Content Include="Scripts\Views\ArtworkList.js" />
     <Content Include="Scripts\Views\ArtworkEdit.js" />
     <Content Include="Scripts\webExpress\webExpress.control.confirmWindow.js" />
     <Content Include="Scripts\webExpress\webExpress.controls.adpaters.js" />
@@ -367,6 +368,7 @@
     <Content Include="Views\Artwork\List.cshtml" />
     <Content Include="Views\Artwork\_List.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
+    <Content Include="Views\Artwork\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

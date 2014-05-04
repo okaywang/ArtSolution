@@ -96,18 +96,58 @@ namespace Art.Website.Controllers
             return View("Edit", model);
         }
 
+
         [HttpGet]
         public ActionResult List()
         {
             var model = new ArtworkManageModel();
 
             var defaultCriteria = new ArtworkSearchCriteria(10);
-            model.PagedArtworks = GetPagedArtistModel(defaultCriteria);
-             
+            model.PagedArtworks = GetPagedArtworkModel(defaultCriteria);
+
             return View(model);
         }
 
-        private PagedArtworkModel GetPagedArtistModel(ArtworkSearchCriteria criteria)
+        public ActionResult List(ArtworkSearchCriteria criteria)
+        {
+            var model = GetPagedArtworkModel(criteria);
+            return PartialView("_List", model);
+        }
+
+        public JsonResult Delete(int id)
+        {
+            var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
+            ArtworkBussinessLogic.Instance.Delete(artwork);
+            var model = new ResultModel(true, string.Empty);
+            return Json(model);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
+            var model = ArtworkDetailModelTranslator.Instance.Translate(artwork);
+            return View(model);
+        }
+
+        public JsonResult CancelPublish(int id)
+        {
+            var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
+            artwork.IsPublic = false;
+            ArtworkBussinessLogic.Instance.Update(artwork);
+            var model = new ResultModel(true, string.Empty);
+            return Json(model);
+        }
+
+        public JsonResult Publish(int id)
+        {
+            var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
+            artwork.IsPublic = true;
+            ArtworkBussinessLogic.Instance.Update(artwork);
+            var model = new ResultModel(true, string.Empty);
+            return Json(model);
+        }
+
+        private PagedArtworkModel GetPagedArtworkModel(ArtworkSearchCriteria criteria)
         {
             var artworks = new List<ArtworkSimpleModel>();
             var pagedArtworks = ArtworkBussinessLogic.Instance.SearchArtworks(criteria.NamePart, criteria.ArtworkTypeId, criteria.ArtMaterialId, criteria.ArtistId, criteria.PagingRequest);
@@ -144,7 +184,7 @@ namespace Art.Website.Controllers
 
             var auctionTypes = ArtworkBussinessLogic.Instance.GetAuctionTypes();
             model.SourceAuctionTypes = IdNameModelTranslator<AuctionType>.Instance.Translate(auctionTypes);
-             
+
             return model;
         }
 

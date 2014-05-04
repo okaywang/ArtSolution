@@ -26,7 +26,7 @@
                 }
                 else
                 {
-                <a onclick="refresh(@(i))" class="t-link num">@(i + 1)</a>    
+                <a onclick="art.ui.view.current.refresh(@(i))" class="t-link num">@(i + 1)</a>    
                 }
             }
 
@@ -59,6 +59,6 @@
     </div>
 
     <div class="refresh">
-        <a href="javascript:void(0)" class="t-refresh">刷新</a>
+        <a href="javascript:void(0)" onclick="art.ui.view.current.refresh()" class="t-refresh">刷新</a>
     </div>
 </div>
