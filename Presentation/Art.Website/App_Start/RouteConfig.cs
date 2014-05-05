@@ -16,7 +16,7 @@ namespace Art.Website
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Message", action = "NoticeList", id = UrlParameter.Optional }
+                defaults: new { controller = "Message", action = "List", id = UrlParameter.Optional }
             );
         }
     }

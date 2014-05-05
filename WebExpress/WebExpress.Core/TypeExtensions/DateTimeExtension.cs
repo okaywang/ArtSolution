@@ -17,5 +17,10 @@ namespace WebExpress.Core
         {
             return DateTime.Parse(dt.ToShortDateString().Trim() + " 00:00:00");
         }
+
+        public static string ToGeneralString(this DateTime dt)
+        {
+            return dt.ToString("yyyy-MM-dd hh:mm:ss");
+        }
     }
 }

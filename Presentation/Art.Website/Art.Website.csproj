@@ -220,6 +220,8 @@
     <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Models\Artist\ArtistDetailModel.cs" />
     <Compile Include="Models\Artist\ArtistManageModel.cs" />
+    <Compile Include="Models\Message\CommentSearchCriteria.cs" />
+    <Compile Include="Models\Message\MessageModel.cs" />
     <Compile Include="Models\Message\SystemNoticeModel.cs" />
     <Compile Include="Models\Message\SystemNoticeSearchCriteria.cs" />
     <Compile Include="Models\Translators\ITranslator.cs" />
@@ -375,8 +377,9 @@
     <Content Include="Views\Artwork\_List.cshtml" />
     <Content Include="Views\Shared\_Pager.cshtml" />
     <Content Include="Views\Artwork\Detail.cshtml" />
-    <Content Include="Views\Message\NoticeList.cshtml" />
+    <Content Include="Views\Message\List.cshtml" />
     <Content Include="Views\Message\_NoticeList.cshtml" />
+    <Content Include="Views\Message\_CommentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

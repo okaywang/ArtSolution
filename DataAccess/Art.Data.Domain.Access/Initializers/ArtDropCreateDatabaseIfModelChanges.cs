@@ -143,6 +143,13 @@ namespace Art.Data.Domain.Access.Initializers
             notice.FADateTime = DateTime.Now;
             context.Set<SystemNotice>().Add(notice);
 
+            var comment = new Comment();
+            comment.Text = "好漂亮的油画哦";
+            comment.Artwork = context.Set<Artwork>().First();
+            comment.Customer = context.Set<Customer>().First();
+            comment.State = CommentState.Approving;
+            comment.FADateTime = DateTime.Now;
+            context.Set<Comment>().Add(comment);
             context.SaveChanges();
             //base.Seed(context);
         }

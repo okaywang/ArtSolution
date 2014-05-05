@@ -1,4 +1,4 @@
-﻿@model PagedSystemNoticeModel
+﻿@model MessageModel
 @{    
     Layout = "~/Views/Shared/_ArtLayout.cshtml";
     ViewBag.Title = "评价管理";
@@ -29,8 +29,8 @@
                     <input type="button" value="批量删除" name="" class="searchBtn delebtn J_deleAllList" />
                 </div>
 
-                <div class="data">
-                    @Html.Partial("_NoticeList", Model)
+                <div class="noticeData">
+                    @Html.Partial("_NoticeList", Model.SystemNoticeModel)
                 </div>
             </div>
             <div class="tab-content J_tabct commentbox hide">
@@ -39,106 +39,21 @@
                         <td class="startdateinp">发布时间：<input value="" name="" type="text" id="" class="calendarInp startdate" /></td>
                         <td class="enddateinp">结束时间：<input value="" name="" type="text" id="" class="calendarInp enddate" /></td>
                         <td class="zt">状态：
-                                <select name="">
+                                <select class="state">
                                     <option selected="selected" value="">全部</option>
-                                    <option value="">审核中</option>
-                                    <option value="">审核通过</option>
-                                    <option value="">审核不通过</option>
+                                    <option value="0">审核中</option>
+                                    <option value="1">审核通过</option>
+                                    <option value="2">审核不通过</option>
+                                    <option value="3">已回复</option>
                                 </select>
                         </td>
                         <td>
-                            <input type="submit" value="搜索" name="" class="searchBtn" /></td>
+                            <input type="button" value="搜索" id="btnSearchComment" class="searchBtn" /></td>
                     </tr>
                 </table>
 
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablestyle t-grid J_listbox">
-                    <thead>
-                        <tr class="theadbg">
-                            <th ckass="t-num">序号</th>
-                            <th class="t-time">发布时间</th>
-                            <th class="t-zuopin">关联作品</th>
-                            <th class="t-comment">评价内容</th>
-                            <th class="t-zt">状态</th>
-                            <th class="t-cz">操作</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>1</td>
-                        <td>2014-4-4 12：09:12</td>
-                        <td>蒙娜丽莎的微笑</td>
-                        <td align="left" class="J_commentNr">哇好漂亮的画哦</td>
-                        <td><span class="t-gray">审核中</span></td>
-                        <td><a class="t-green" href="###">审核通过</a> <a class="dele" href="###">审核不通过</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2014-4-4 12：09:12</td>
-                        <td>蒙娜丽莎的微笑</td>
-                        <td align="left" class="J_commentNr">喜欢</td>
-                        <td><span class="t-gray">审核通过</span></td>
-                        <td><a class="J_reply" href="">回复</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2014-4-4 12：09:12</td>
-                        <td>蒙娜丽莎的微笑</td>
-                        <td align="left" class="J_commentNr">真心不错，有点贵哇</td>
-                        <td><span class="t-gray">审核不通过</span></td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>2014-4-4 12：09:12</td>
-                        <td>蒙娜丽莎的微笑</td>
-                        <td align="left" class="J_commentNr">真心不错，有点贵哇</td>
-                        <td><span class="t-gray">己回复</span></td>
-                        <td>-</td>
-                    </tr>
-                </table>
-
-                <div class="grid-pager clearfix">
-                    <div class="t-status-text">显示记录1-15,共66条</div>
-                    <div class="t-pager t-reset">
-                        <a href="#" class="t-link t-state-disabled">
-                            <!--变灰不可选-->
-                            <span class="t-icon t-arrow-first-gray">first</span>
-                            <!--变高亮可选
-                            <span class="t-icon t-arrow-first">first</span>
-                            -->
-                        </a>
-                        <a href="#" class="t-link t-state-disabled">
-                            <!--变灰不可选-->
-                            <span class="t-icon t-arrow-prev-gray">prev</span>
-                            <!--高亮可选
-                            <span class="t-icon t-arrow-prev">prev</span>
-                            -->
-                        </a>
-                        <div class="t-numeric">
-                            <span class="t-state-active">1</span>
-                            <a class="t-link num">2</a>
-                            <a class="t-link num">3</a>
-                            <a class="t-link num">4</a>
-                            <a class="t-link num">5</a>
-                        </div>
-                        <a href="#" class="t-link">
-                            <!--高亮可选-->
-                            <span class="t-icon t-arrow-next">next</span>
-                            <!--变灰不可选
-                            <span class="t-icon t-arrow-next-gray">next</span>
-                            -->
-                        </a>
-                        <a href="#" class="t-link">
-                            <!--高亮可选-->
-                            <span class="t-icon t-arrow-last">last</span>
-                            <!--变灰不可选
-                               <span class="t-icon t-arrow-last-gray">last</span>
-                            -->
-                        </a>
-                    </div>
-
-                    <div class="refresh">
-                        <a href="" class="t-refresh">刷新</a>
-                    </div>
+                <div class="commentData">
+                    @Html.Partial("_CommentList", Model.CommentModel)
                 </div>
             </div>
         </div>
@@ -216,15 +131,14 @@
                     <img src="i/1.jpg" /></dt>
                 <dd>
                     <i></i>
-                    <span class="time">2013-5-25 18：22
-                    </span>
-                    <p>
+                    <span class="time commentTime">2013-5-25 18：22</span>
+                    <p class="commentText">
                         哇好漂亮的作品哇
                     </p>
                 </dd>
             </dl>
         </div>
-        <div class="im-r">
+        @*<div class="im-r">
             <dl class="clearfix">
                 <dt>
                     <img src="i/2.jpg" /></dt>
@@ -237,20 +151,19 @@
                     </p>
                 </dd>
             </dl>
-        </div>
+        </div>*@
 
     </div>
     <div class="sendbox">
-        <textarea class="sendtxt">
-
-            </textarea>
-        <input type="button" value="发送" name="" class="sendbtn" />
+        <textarea class="sendtxt"></textarea>
+        <input type="button" value="发送" class="sendbtn" />
     </div>
 </div>
 <!--end-->
 <script>
     $(document).ready(function () {
         var viewNoticeInstance = new art.ui.view.SystemNoticeList();
+        var viewCommentInstance = new art.ui.view.CommentList();
 
         //日历控件
         var adminjs = new adminglass();//实例化后台类
@@ -278,7 +191,7 @@
             var title = $("#txtNoticeTitle").val();
             var content = $("#txtNoticeContent").val();
             viewNoticeInstance.publish(title, content, resetStateAfterPublish);
-              
+
             return false;
         });
 
@@ -288,18 +201,18 @@
 
         $("#btnConfirmDeleteNoticeSelected").click(function () {
             var $trs = $(":checkbox.checkItem:checked").closest("tr");
-            var ids = $.map($trs, function (item,index) {
+            var ids = $.map($trs, function (item, index) {
                 return $(item).attr("noticeId");
             });
             adminjs.closewinbox($(this).closest(".add-openbox"));
             viewNoticeInstance.remove(ids);
         });
-          
+
         $("#btnSearchNotice").click(function () {
             viewNoticeInstance.setCriteria($(".startdate ").val(), $(".enddate").val());
-            viewNoticeInstance.refresh(0); 
+            viewNoticeInstance.refresh(0);
         });
-         
+
         function resetStateAfterPublish() {
             adminjs.closewinbox("#J_issueTzbox");
             $("#txtNoticeTitle").val("");
@@ -321,14 +234,46 @@
             return false
         });
         ////查看消息
-        $('.J_lookAt').click(function () {
+        $(document).on("click", '.J_lookAt', function () {
             adminjs.openwinbox('#J_lookAtbox');
             return false
         });
-        //发布通知
-        $('.J_reply').click(function () {
+
+        //回复
+        $(document).on("click", ".J_reply", function () {
+            var tr = $(this).closest("tr");
+            viewCommentInstance.setCurrentTr(tr);
+            $(".commentTime").text($(tr).find("td.time").text());
+            $(".commentText").text($(tr).find("td.text").text());
             adminjs.openwinbox('#J_replybox');
             return false
+        });
+
+
+        $(document).on("click", ".commentData a.approve", function () {
+            var tr = $(this).closest("tr");
+            viewCommentInstance.setCurrentTr(tr);
+            viewCommentInstance.approve();
+        });
+
+        $(document).on("click", ".commentData a.unApprove", function () {
+            var tr = $(this).closest("tr");
+            viewCommentInstance.setCurrentTr(tr);
+            viewCommentInstance.unApprove();
+        });
+
+        $(".sendbtn").click(function () {
+            var text = $(".sendtxt").val();
+            var _btn = this;
+            viewCommentInstance.reply(text, function () {
+                $(".sendtxt").val("");
+                adminjs.closewinbox($(_btn).closest(".add-openbox"));
+            });
+        });
+
+        $("#btnSearchComment").click(function () {
+            viewCommentInstance.setCriteria($(".commentbox .startdate").val(), $(".commentbox .enddate").val(),$("select.state option:selected").val());
+            viewCommentInstance.refresh(0);
         });
     })
 </script>

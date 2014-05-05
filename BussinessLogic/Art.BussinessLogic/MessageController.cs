@@ -36,23 +36,21 @@ namespace Art.BussinessLogic
             {
                 Artwork = _artworkRepository.Table.First(),
                 Customer = _customerRepository.Table.First(),
-                Content = "哇好漂亮的画哦",
+                Text = "哇好漂亮的画哦",
                 State = CommentState.Approving,
                 FADateTime = DateTime.Now
             };
             _commentRepository.Insert(comment);
         }
 
-        public void AddReply()
+        public void AddReply(int commentId,string repliedText)
         {
             var reply = new Reply();
-            reply.Content = "谢谢亲，喜欢就买一副吧";
-            reply.Comment = _commentRepository.Table.First();
+            reply.Text = repliedText;
+            reply.Comment = _commentRepository.GetById(commentId);
             reply.FADateTime = DateTime.Now;
-
             reply.Comment.State = CommentState.Replied;
             _replyRepository.Insert(reply);
-
         }
 
         public PagedList<SystemNotice> SearchSystemNotice(DateTime? startDate, DateTime? endDate, WebExpress.Core.PagingRequest paging)
@@ -101,6 +99,52 @@ namespace Art.BussinessLogic
             {
                 _systemNoticeRepository.Delete(notice);
             }
+        }
+
+        public PagedList<Comment> SearchComments(DateTime? startDate, DateTime? endDate, CommentState? state, PagingRequest paging)
+        {
+            Guard.IsNotNull<ArgumentNullException>(paging, "paging");
+
+            var query = _commentRepository.Table;
+            if (startDate.HasValue)
+            {
+                var dateBegin = startDate.Value.BeginOfDay();
+                query = query.Where(i => i.FADateTime >= dateBegin);
+            }
+
+            if (endDate.HasValue)
+            {
+                var dateEnd = endDate.Value.EndOfDay();
+                query = query.Where(i => i.FADateTime <= dateEnd);
+            }
+
+            if (state.HasValue)
+            {
+                query = query.Where(i => i.State == state.Value);
+            }
+
+
+            query = query.OrderByDescending(i => i.Id);
+
+            var result = new PagedList<Comment>(query, paging.PageIndex, paging.PageSize);
+            return result;
+        }
+
+        public Comment GetComment(int commentId)
+        {
+            return _commentRepository.GetById(commentId);
+        }
+
+        public void Approve(Comment comment)
+        {
+            comment.State = CommentState.Approved;
+            _commentRepository.Update(comment);
+        }
+
+        public void UnApprove(Comment comment)
+        {
+            comment.State = CommentState.UnApproved;
+            _commentRepository.Update(comment);
         }
     }
 }

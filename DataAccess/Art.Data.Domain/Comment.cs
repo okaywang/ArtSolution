@@ -8,20 +8,18 @@ namespace Art.Data.Domain
 {
     public class Comment:BaseEntity
     {
-        public string Content { get; set; }
+        public string Text { get; set; }
         public CommentState State { get; set; }
 
-        public Customer Customer { get; set; }
-        public Artwork Artwork { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual Artwork Artwork { get; set; }
 
         public DateTime FADateTime { get; set; }
-
-        public string MyProperty { get; set; }
     }
 
     public class Reply:BaseEntity
     {
-        public string Content { get; set; }
+        public string Text { get; set; }
         public Comment Comment { get; set; }
         public AdminUser User { get; set; }
 
