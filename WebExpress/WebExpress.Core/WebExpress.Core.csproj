@@ -51,6 +51,7 @@
     <Compile Include="Paging\PagedList.cs" />
     <Compile Include="Paging\PagingRequest.cs" />
     <Compile Include="Paging\PagingResult.cs" />
+    <Compile Include="TypeExtensions\DateTimeExtension.cs" />
     <Compile Include="TypeExtensions\EnumExtenstion.cs" />
     <Compile Include="TypeExtensions\ValueText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class User:BaseEntity
+    public class AdminUser:BaseEntity
     {
         public string Name { get; set; }
         [MaxLength(40)]

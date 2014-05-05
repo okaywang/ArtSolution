@@ -54,11 +54,15 @@
     <Compile Include="Mapping\Artwork\ArtworkTypeMap.cs" />
     <Compile Include="Mapping\Artwork\AuctionTypeMap.cs" />
     <Compile Include="Mapping\Artist\ProfessionMap.cs" />
+    <Compile Include="Mapping\Customer\CustomerMap.cs" />
     <Compile Include="Mapping\GenreMap.cs" />
-    <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Mapping\AdminUserMap.cs" />
     <Compile Include="Mapping\Artwork\ArtPeriodMap.cs" />
     <Compile Include="Mapping\Artwork\ArtPlaceMap.cs" />
     <Compile Include="Mapping\ExceptionLog.cs" />
+    <Compile Include="Mapping\CommentMap.cs" />
+    <Compile Include="Mapping\ReplyMap.cs" />
+    <Compile Include="Mapping\SystemNoticeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

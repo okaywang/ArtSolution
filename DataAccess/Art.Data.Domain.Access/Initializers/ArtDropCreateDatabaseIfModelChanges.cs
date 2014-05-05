@@ -53,7 +53,7 @@ namespace Art.Data.Domain.Access.Initializers
             context.Set<Artist>().Add(artist);
 
 
-            var user = new User
+            var user = new AdminUser
             {
                 Name = "liu zhiwei",
                 LoginName = "lzw",
@@ -62,7 +62,7 @@ namespace Art.Data.Domain.Access.Initializers
                 Contact = "13866666666"
             };
 
-            context.Set<User>().Add(user);
+            context.Set<AdminUser>().Add(user);
 
 
             var typeName = "artworkType1";
@@ -124,6 +124,24 @@ namespace Art.Data.Domain.Access.Initializers
             artwork.StartDateTime = DateTime.Now.AddDays(-3);
             artwork.EndDateTime = DateTime.Now.AddDays(3);
             context.Set<Artwork>().Add(artwork);
+
+            var customer = new Customer() { Name = "lifengbao" };
+            context.Set<Customer>().Add(customer);
+
+            var adminUser = new AdminUser
+            {
+                LoginName = "a",
+                Name = "a"
+            };
+            context.Set<AdminUser>().Add(adminUser);
+            context.SaveChanges();
+
+            var notice = new SystemNotice();
+            notice.Title = "aaaaa";
+            notice.Content = "bbbbbbbbbbbbbbbbbb";
+            notice.AdminUser = context.Set<AdminUser>().First();
+            notice.FADateTime = DateTime.Now;
+            context.Set<SystemNotice>().Add(notice);
 
             context.SaveChanges();
             //base.Seed(context);
