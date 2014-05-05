@@ -250,7 +250,7 @@
 <!--end-->
 <script>
     $(document).ready(function () {
-        var viewInstance = new art.ui.view.MessageList();
+        var viewNoticeInstance = new art.ui.view.SystemNoticeList();
 
         //日历控件
         var adminjs = new adminglass();//实例化后台类
@@ -272,48 +272,18 @@
             return false
         });
 
+        var currentNoticeId = 0;
+
         $("#btnNoticeConfirm").click(function () {
             var title = $("#txtNoticeTitle").val();
             var content = $("#txtNoticeContent").val();
-
-            var url = "/Message/Publish";
-            webExpress.utility.ajax.request(url, { title: title, content: content },
-                function () {
-                    adminjs.closewinbox("#J_issueTzbox");
-                    $("#txtNoticeTitle").val("");
-                    $("#txtNoticeContent").val("");
-
-                    $(".startdate").val("");
-                    $(".enddate").val("");
-                    resetSearchNoticeCriteria();
-                    refreshSystemNotices();
-                },
-                function () { 
-                }
-            );
-
+            viewNoticeInstance.publish(title, content, resetStateAfterPublish);
+              
             return false;
         });
 
-        var _searchNoticeCriteria = { PagingRequest: { PageIndex: 0, PageSize: 10 } };
-        function refreshSystemNotices(pageIndex) {
-            var url = "/Message/NoticeList";
-            if (pageIndex !== undefined) {
-                _searchNoticeCriteria.PagingRequest.PageIndex = pageIndex;
-            }
-            webExpress.utility.ajax.request(url, _searchNoticeCriteria, function () {
-
-            }, function (data) {
-                $(".data").html(data.responseText);
-                $(".data .grid-pager a[pageIndex]").click(function () {
-                    refreshSystemNotices($(this).attr("pageIndex"));
-                });
-            });
-        }
-
-
         $("#btnConfirmDeleteNotice").click(function () {
-            deleteSystemNotice(currentNoticeId);
+            viewNoticeInstance.remove([currentNoticeId]);
         });
 
         $("#btnConfirmDeleteNoticeSelected").click(function () {
@@ -322,34 +292,23 @@
                 return $(item).attr("noticeId");
             });
             adminjs.closewinbox($(this).closest(".add-openbox"));
-            deleteSystemNotices(ids);
+            viewNoticeInstance.remove(ids);
         });
-
-        function deleteSystemNotice(noticeId) {
-            var ids = [noticeId];
-            deleteSystemNotices(ids);
-        }
-
-        function deleteSystemNotices(noticeIds) {
-            var url = "/Message/DeleteNotices";
-            webExpress.utility.ajax.request(url, { noticeIds: noticeIds }, function (data) {
-                console.log("delete succ");
-                refreshSystemNotices();
-            }, function (data) {
-                console.log("delete failture");
-            });
-        }
-
+          
         $("#btnSearchNotice").click(function () {
-            resetSearchNoticeCriteria();
-            refreshSystemNotices();
+            viewNoticeInstance.setCriteria($(".startdate ").val(), $(".enddate").val());
+            viewNoticeInstance.refresh(0); 
         });
+         
+        function resetStateAfterPublish() {
+            adminjs.closewinbox("#J_issueTzbox");
+            $("#txtNoticeTitle").val("");
+            $("#txtNoticeContent").val("");
 
-        function resetSearchNoticeCriteria() {
-            _searchNoticeCriteria = { StartDate: $(".startdate ").val(), EndDate: $(".enddate").val(), PagingRequest: { PageIndex: 0, PageSize: 10 } };
+            $(".startdate").val("");
+            $(".enddate").val("")
         }
 
-        var currentNoticeId = 0;
         ////删除所有
         $('.J_deleAllList').click(function () {
             adminjs.openwinbox('#J_deleAllbox');
