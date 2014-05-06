@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class ArtMaterialMap : EntityTypeConfiguration<ArtMaterial>
+    public class ArtMaterialMap : ArtEntityTypeConfiguration<ArtMaterial>
     {
         public ArtMaterialMap()
         { 

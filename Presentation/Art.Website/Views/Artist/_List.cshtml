@@ -20,7 +20,7 @@
                 <td style="text-align: center">@(item.IsPublic ? "已发布" : "未发布")</td>
                 <td style="text-align: center" class="floperation">
                     <a href="Artist/Edit/@item.Id" target="_blank">编辑</a>
-                    <a href="javascript:void(0)" url="Artist/Delete/@item.Id" class="J_deletezzBtn">删除</a>
+                    <a href="javascript:void(0)" url="/Artist/Delete/@item.Id" class="J_deletezzBtn">删除</a>
 
                     @if (item.IsPublic)
                     {

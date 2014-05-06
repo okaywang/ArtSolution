@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class SystemNoticeMap : EntityTypeConfiguration<SystemNotice>
+    public class SystemNoticeMap : ArtEntityTypeConfiguration<SystemNotice>
     {
 
     }

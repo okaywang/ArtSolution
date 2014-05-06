@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class CommentMap : EntityTypeConfiguration<Comment>
+    public class CommentMap : ArtEntityTypeConfiguration<Comment>
     {
 
     }

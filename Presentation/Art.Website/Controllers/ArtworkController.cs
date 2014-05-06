@@ -14,21 +14,8 @@ namespace Art.Website.Controllers
         public ActionResult Types()
         {
             var model = new ArtworkTypesModel();
-
-            //model.ArtworkTypes.Add(new ArtworkTypeModel
-            //{
-            //    Name = "油画",
-            //    ArtMaterials = new List<ArtMaterialModel> { new ArtMaterialModel { Id = 1, Name = "aa" }, new ArtMaterialModel { Id = 1, Name = "b" } },
-            //    ArtShapes = new List<ArtShapeModel> { new ArtShapeModel { Id = 1, Name = "bb" } },
-            //    ArtTechniques = new List<ArtTechniqueModel> { new ArtTechniqueModel { Id = 1, Name = "bb" } }
-            //});
-            //model.ArtworkTypes.Add(new ArtworkTypeModel
-            //{
-            //    Name = "版画",
-            //    ArtMaterials = new List<ArtMaterialModel> { new ArtMaterialModel { Id = 1, Name = "aa" }, new ArtMaterialModel { Id = 1, Name = "b" } },
-            //    ArtShapes = new List<ArtShapeModel> { new ArtShapeModel { Id = 1, Name = "bb" } },
-            //    ArtTechniques = new List<ArtTechniqueModel> { new ArtTechniqueModel { Id = 1, Name = "bb" } }
-            //});
+            var artworkTypes = ArtworkBussinessLogic.Instance.GetArtworkTypes();
+            model.ArtworkTypes = ArtworkTypeModelTranslator.Instance.Translate(artworkTypes); 
             return View(model);
         }
 

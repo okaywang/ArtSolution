@@ -11,5 +11,7 @@ namespace Art.Data.Domain
         public string Name { get; set; }
 
         public DateTime? Birthday { get; set; }
+
+        public string Test2234444 { get; set; }
     }
 }

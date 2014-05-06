@@ -10,17 +10,19 @@ namespace Art.Website.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsUsed { get; set; }
     }
 
-    public class ArtMaterialTranslator : TranslatorBase<ArtMaterial, ArtMaterialModel>
+    public class ArtMaterialModelTranslator : TranslatorBase<ArtMaterial, ArtMaterialModel>
     {
-        public static readonly ArtMaterialTranslator Instance = new ArtMaterialTranslator();
+        public static readonly ArtMaterialModelTranslator Instance = new ArtMaterialModelTranslator();
 
         public override ArtMaterialModel Translate(ArtMaterial from)
         {
             var to = new ArtMaterialModel();
             to.Id = from.Id;
             to.Name = from.Name;
+           
             return to;
         }
 

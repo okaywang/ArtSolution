@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class GenreMap : EntityTypeConfiguration<Genre>
+    public class GenreMap : ArtEntityTypeConfiguration<Genre>
     {
         public GenreMap()
         {

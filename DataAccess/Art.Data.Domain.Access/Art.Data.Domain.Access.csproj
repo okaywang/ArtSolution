@@ -46,6 +46,7 @@
     <Compile Include="IDbContext.cs" />
     <Compile Include="Initializers\ArtDropCreateDatabaseIfModelChanges.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="Mapping\ArtEntityTypeConfiguration.cs" />
     <Compile Include="Mapping\Artist\ArtistMap.cs" />
     <Compile Include="Mapping\Artwork\ArtMaterialMap.cs" />
     <Compile Include="Mapping\Artwork\ArtTechniqueMap.cs" />
@@ -66,6 +67,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Art.Data.Common\Art.Data.Common.csproj">
+      <Project>{449228d3-3f33-445a-8733-1ae940671d41}</Project>
+      <Name>Art.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Art.Data.Domain\Art.Data.Domain.Entities.csproj">
       <Project>{83e133a9-e8f3-4ecb-b4ec-5a163f3ad3d1}</Project>
       <Name>Art.Data.Domain.Entities</Name>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class ArtShapeMap : EntityTypeConfiguration<ArtShape>
+    public class ArtShapeMap : ArtEntityTypeConfiguration<ArtShape>
     {
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class AdminUserMap : EntityTypeConfiguration<AdminUser>
+    public class AdminUserMap : ArtEntityTypeConfiguration<AdminUser>
     {
 
     }

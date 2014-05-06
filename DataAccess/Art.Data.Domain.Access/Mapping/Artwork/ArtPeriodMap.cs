@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class ArtPeriodMap : EntityTypeConfiguration<ArtPeriod>
+    public class ArtPeriodMap : ArtEntityTypeConfiguration<ArtPeriod>
     {
         public ArtPeriodMap()
         { 

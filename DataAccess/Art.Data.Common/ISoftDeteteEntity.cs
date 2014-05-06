@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Art.Data.Domain
+namespace Art.Data.Common
 {
-    public enum Genders
+    public interface ISoftDelete
     {
-        None = 0,
-        Male = 1,
-        Female = 2
     }
 }

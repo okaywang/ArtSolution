@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class ExceptionLogMap : EntityTypeConfiguration<ExceptionLog>
+    public class ExceptionLogMap : ArtEntityTypeConfiguration<ExceptionLog>
     {
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Art.Data.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class ArtworkType : BaseEntity
+    public class ArtworkType : BaseEntity, ISoftDelete
     {
         [MaxLength(50)]
         public string Name { get; set; }
@@ -16,6 +17,6 @@ namespace Art.Data.Domain
 
         public virtual ICollection<ArtShape> ArtShapes { get; set; }
 
-        public virtual ICollection<ArtTechnique> ArtTechniques { get; set; }
+        public virtual ICollection<ArtTechnique> ArtTechniques { get; set; } 
     }
 }

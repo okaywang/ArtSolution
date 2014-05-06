@@ -39,6 +39,10 @@ namespace Art.BussinessLogic
         public List<ArtworkType> GetArtworkTypes()
         {
             var types = _artworkTypeRepository.Table.ToList();
+
+
+            var types2 = _artworkTypeRepository.Table.ToList();
+
             return types;
         }
 

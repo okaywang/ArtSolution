@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class AuctionTypeMap : EntityTypeConfiguration<AuctionType>
+    public class AuctionTypeMap : ArtEntityTypeConfiguration<AuctionType>
     {
     }
 }

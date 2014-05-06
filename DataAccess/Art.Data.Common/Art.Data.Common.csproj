@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3E3724ED-BF54-469A-9768-F3FAE5C58A97}</ProjectGuid>
+    <ProjectGuid>{449228D3-3F33-445A-8733-1AE940671D41}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Art.Data.Common</RootNamespace>
@@ -39,6 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentState.cs" />
+    <Compile Include="Degree.cs" />
+    <Compile Include="Genders.cs" />
+    <Compile Include="IIdNameEntity.cs" />
+    <Compile Include="ISoftDeteteEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

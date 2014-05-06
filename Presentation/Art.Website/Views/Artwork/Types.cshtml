@@ -22,6 +22,209 @@
                 </tr>
             </thead>
             <tbody>
+                @for (int i = 0; i < Model.ArtworkTypes.Count; i++)
+                {
+                    var item = Model.ArtworkTypes[i];
+                    <tr>
+                        <td align="center" class="flnum">@(i + 1)</td>
+                        <td align="center" class="flname">@item.Name</td>
+                        <td class="flchild">材质：
+                            <div class="itembox J_caizhi">
+                                @foreach (var material in item.ArtMaterials)
+                                {
+                                    <span class="t-item"><span class="t-text J_t_text">@material.Name</span><input class="icondele J_deleBtn" type="button" value="" name="" ifshow="true" /></span>    
+                                }
+                            </div>
+                            <br>
+                            形制：
+                            <div class="itembox J_xingzhi">
+                                @foreach (var shape in item.ArtShapes)
+                                {
+                                    <span class="t-item"><span class="t-text J_t_text">@shape.Name</span><input class="icondele J_deleBtn" type="button" value="" name="" /></span>    
+                                }
+                            </div>
+                            <br>
+                            技法：
+                            <div class="itembox J_jifa">
+                                @foreach (var technique in item.ArtTechniques)
+                                { 
+                                    <span class="t-item"><span class="t-text J_t_text">@technique.Name</span><input class="icondele J_deleBtn" type="button" value="" name="" ifshow="false" /></span>
+                                }
+                            </div> 
+                        </td>
+                        <td align="center" class="floperation">
+                            <a href="#" class="J_compile">
+                                <img src="icon/bianji.png" align="top" />编辑</a><a href="#" class="J_deleteflBtn"><img src="icon/shanchu.png" align="top" />删除</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<!--添加艺术分类弹框 start-->
+<div class="add-openbox addflbox-openwin" id="J_addflbox">
+    <h2>添加作品分类提示<a href="" class="J_closebox xbtn"></a></h2>
+    <dl class="addflbox clearfix">
+        <dt>分类名称：</dt>
+        <dd>
+            <input class="addflinp t-inp J_addflinp" value="如油画、版画，每次添加一个名称" name="" /><i class="biaored">*</i></dd>
+
+    </dl>
+    <dl class="addflbox clearfix">
+        <dt>子属性：</dt>
+        <dd class="">
+            <dl class="win-itembox clearfix">
+                <dt class="win-t-text"><i class="biaored">*</i>材质</dt>
+                <dd class="win-t-item J_win-caizhi"></dd>
+                <input class="iconadd J_addBtn" type="button" value="" />
+            </dl>
+            <dl class="win-itembox clearfix">
+                <dt class="win-t-text">形制</dt>
+                <dd class="win-t-item J_win-xingzhi"></dd>
+                <input class="iconadd J_addBtn" type="button" value="" />
+            </dl>
+            <dl class="win-itembox clearfix">
+                <dt class="win-t-text">技法</dt>
+                <dd class="win-t-item J_win-jifa"></dd>
+                <input class="iconadd J_addBtn" type="button" value="" />
+            </dl>
+        </dd>
+    </dl>
+
+
+    <p class="btnbox">
+        <input value="添加" type="button" class="J_closebox closebox" />
+        <input value="取消" type="button" class="J_closebox closebox" />
+    </p>
+</div>
+<!--end-->
+<!--编辑艺术分类弹框 start-->
+<div class="add-openbox addflbox-openwin" id="J_compilebox">
+    <h2>编辑作品分类提示<a href="javascript:void(0)" class="J_closebox xbtn"></a></h2>
+    <dl class="addflbox clearfix">
+        <dt>分类名称：</dt>
+        <dd>
+            <input class="addflinp t-inp J_flnameInp" value="" name="" /><i class="biaored">*</i></dd>
+
+    </dl>
+    <dl class="addflbox clearfix">
+        <dt>子属性：</dt>
+        <dd class="">
+            <dl class="win-itembox clearfix">
+                <dt class="win-t-text"><i class="biaored">*</i>材质</dt>
+                <dd class="win-t-item J_win-caizhi"></dd>
+                <input class="iconadd J_addBtn" type="button" value="" />
+            </dl>
+            <dl class="win-itembox clearfix">
+                <dt class="win-t-text">形制</dt>
+                <dd class="win-t-item J_win-xingzhi"></dd>
+                <input class="iconadd J_addBtn" type="button" value="" />
+            </dl>
+            <dl class="win-itembox clearfix">
+                <dt class="win-t-text">技法</dt>
+                <dd class="win-t-item J_win-jifa"></dd>
+                <input class="iconadd J_addBtn" type="button" value="" />
+            </dl>
+        </dd>
+    </dl>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox closebox" />
+        <input value="取消" type="button" class="J_closebox closebox" />
+    </p>
+</div>
+<!--end-->
+
+<!--删除分类 start-->
+<div class="add-openbox" id="J_deletelistBox">
+    <h2>删除艺术家提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定删除该分类吗？删除后，该分类下的作品，将会全部删除！请谨慎操作！
+    </p>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox closebox" />
+        <input value="取消" type="button" class="J_closebox closebox" />
+    </p>
+</div>
+<!--end-->
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var adminjs = new adminglass();//实例化后台js类
+        //关闭弹层
+        $('.J_closebox').click(function () {
+            adminjs.closewinbox('.add-openbox');
+        })
+        //input文字交互
+        adminjs.inpFocusBlur('.J_addflinp');
+
+        //添加分类弹框
+        $('#J_addflBtn').click(function () {
+            adminjs.openwinbox('#J_addflbox');
+            return false;
+        });
+
+        //编辑分类弹框
+        $('.J_compile').click(function () {
+            adminjs.openwinbox('#J_compilebox');
+            var flname = $(this).parent().parent().find('.flname').html(), //表格分类名称
+                caizhi = $(this).parent().parent().find('.J_caizhi').html(), //表格材质
+                xingzhi = $(this).parent().parent().find('.J_xingzhi').html(), //表格形制
+                jifa = $(this).parent().parent().find('.J_jifa').html(); //表格技法
+            $('#J_compilebox .J_flnameInp').val(flname);
+            $('#J_compilebox .J_win-caizhi').html(caizhi);
+            $('#J_compilebox .J_win-xingzhi').html(xingzhi);
+            $('#J_compilebox .J_win-jifa').html(jifa);
+
+            $('#J_compilebox').find('.J_deleBtn').each(function () {
+                if ($(this).attr('ifshow') == 'true') {
+                    $(this).css('display', 'none');
+                }
+            })
+            return false;
+
+        });
+        adminjs.fladddeleitem();
+
+        //删除分类
+        $('.J_deleteflBtn').click(function () {
+            adminjs.openwinbox('#J_deletelistBox');
+            return false;
+        });
+
+
+
+
+
+
+    })
+</script>
+
+
+@*<div class="conterbox">
+    <h2 class="crumbs">您所在位置：作品管理 > 作品分类
+    </h2>
+    <div class="">
+        <div class="searchbox clearfix">
+            <span class="t-addfl">
+                <input type="submit" value="添加分类" name="" class="btn" id="J_addflBtn" /></span>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t-grid">
+            <thead>
+                <tr class="theadbg">
+                    <th align="center" class="flnum">序号</th>
+                    <th align="center" class="flname">作品分类名称</th>
+                    <th align="center" class="">子属性</th>
+                    <th align="center" class="floperation">操作</th>
+                </tr>
+            </thead>
+            <tbody>
                 @for (int i = 0; i < @Model.ArtworkTypes.Count; i++)
                 {
                     var item = @Model.ArtworkTypes[i];
@@ -228,4 +431,4 @@
 
 
     })
-</script>
+</script>*@

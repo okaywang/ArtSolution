@@ -12,22 +12,22 @@ namespace Art.Website.Models
         {
             ArtworkTypes = new List<ArtworkTypeModel>();
         }
-        public List<ArtworkTypeModel> ArtworkTypes { get; set; }
+        public IList<ArtworkTypeModel> ArtworkTypes { get; set; }
     }
 
     public class ArtworkTypeModel
     {
         public ArtworkTypeModel()
         {
-            ArtMaterials = new List<IdNameModel>();
-            ArtShapes = new List<IdNameModel>();
-            ArtTechniques = new List<IdNameModel>();
+            ArtMaterials = new List<ArtMaterialModel>();
+            ArtShapes = new List<ArtShapeModel>();
+            ArtTechniques = new List<ArtTechniqueModel>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public IList<IdNameModel> ArtMaterials { get; set; }
-        public IList<IdNameModel> ArtShapes { get; set; }
-        public IList<IdNameModel> ArtTechniques { get; set; }
+        public IList<ArtMaterialModel> ArtMaterials { get; set; }
+        public IList<ArtShapeModel> ArtShapes { get; set; }
+        public IList<ArtTechniqueModel> ArtTechniques { get; set; }
     }
 
 
@@ -41,10 +41,9 @@ namespace Art.Website.Models
             var to = new ArtworkTypeModel();
             to.Id = from.Id;
             to.Name = from.Name;
-            to.ArtMaterials = IdNameModelTranslator<ArtMaterial>.Instance.Translate(from.ArtMaterials);
-
-            to.ArtShapes = IdNameModelTranslator<ArtShape>.Instance.Translate(from.ArtShapes);
-            to.ArtTechniques = IdNameModelTranslator<ArtTechnique>.Instance.Translate(from.ArtTechniques);  
+            to.ArtMaterials = ArtMaterialModelTranslator.Instance.Translate(from.ArtMaterials);
+            to.ArtShapes = ArtShapeModelTranslator.Instance.Translate(from.ArtShapes);
+            to.ArtTechniques = ArtTechniqueModelTranslator.Instance.Translate(from.ArtTechniques);  
             return to;
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class ArtistMap : EntityTypeConfiguration<Artist>
+    public class ArtistMap : ArtEntityTypeConfiguration<Artist>
     {
         public ArtistMap()
         {

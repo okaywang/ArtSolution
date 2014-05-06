@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Art.Data.Domain
+namespace Art.Data.Common
 {
-    public interface IIdNameEntity
+    public enum Genders
     {
-        int Id { get; set; }
-        string Name { get; set; }
+        None = 0,
+        Male = 1,
+        Female = 2
     }
 }

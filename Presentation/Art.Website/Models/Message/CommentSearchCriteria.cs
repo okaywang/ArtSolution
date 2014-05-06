@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Art.Data.Domain;
 using WebExpress.Core;
+using Art.Data.Common;
 namespace Art.Website.Models
 {
     public class CommentSearchCriteria

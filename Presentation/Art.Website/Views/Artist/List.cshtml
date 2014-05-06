@@ -4,14 +4,13 @@
     ViewBag.Title = "Manage";
 }
 
-<div class="wabPage">
-    <div class="conterbox addAuthor">
-        <h2 class="crumbs">您所在位置：艺术家管理 > 艺术家管理
-        </h2>
-        <div class="managebox">
-            <div class="searchbox clearfix">
-                <span class="t-search">艺术家搜索<input id="txtNamePart" type="text" value="" name="" class="searchinp" />
-                    选择分类:
+<div class="conterbox addAuthor">
+    <h2 class="crumbs">您所在位置：艺术家管理 > 艺术家管理
+    </h2>
+    <div class="managebox">
+        <div class="searchbox clearfix">
+            <span class="t-search">艺术家搜索<input id="txtNamePart" type="text" value="" name="" class="searchinp" />
+                选择分类:
                             <select name="" id="selectProfessionId">
                                 <option value="null" selected="selected">全部</option>
                                 @foreach (var prof in Model.Professions)
@@ -19,80 +18,79 @@
                                     <option value="@prof.Id">@prof.Name</option>
                                 }
                             </select><input type="submit" value="搜索" name="" id="btnSearch" /></span>
-                <span class="t-addfl">
-                    <input type="submit" value="添加分类" name="" class="btn" id="J_addflBtn" /></span>
-            </div>
-
-            <div class="data">
-                @Html.Partial("_List", Model.PagedArtists)
-            </div>
+            <span class="t-addfl">
+                <input type="submit" value="添加分类" name="" class="btn" id="J_addflBtn" /></span>
         </div>
 
+        <div class="data">
+            @Html.Partial("_List", Model.PagedArtists)
+        </div>
     </div>
 
-    <!--添加艺术分类弹框 start-->
-    <div class="add-openbox" id="J_addflbox">
-        <h2>添加艺术分类提示<a href="" class="J_closebox xbtn"></a></h2>
-        <p class="textinfo">添加艺术分类:<input class="addflinp J_addflinp" value="例如：油画家" name="" /></p>
-        <p class="btnbox">
-            <input value="添加" type="button" class="J_closebox" />
-            <input value="取消" type="button" class="J_closebox" />
-        </p>
-    </div>
-    <!--end-->
-    <!--删除艺术家分类 start-->
-    <div class="add-openbox" id="J_deletelistBox">
-        <h2>删除艺术家分类提示<a href="" class="J_closebox xbtn"></a></h2>
-        <p class="l-textinfo">
-            确定删除该分类吗？删除该分类后，该分类旗下所有艺术品将删除。请谨慎操作！
-        </p>
-        <p class="btnbox">
-            <input value="确定" type="button" class="J_closebox" />
-            <input value="取消" type="button" class="J_closebox" />
-        </p>
-    </div>
-    <!--end-->
-    <!--删除艺术家 start-->
-    <div class="add-openbox" id="J_deletezzBox">
-        <h2>删除艺术家提示<a href="" class="J_closebox xbtn"></a></h2>
-        <p class="l-textinfo">
-            确定删除该画家吗？删除该画家后，旗下所有作品将删除。请谨慎操作！
-        </p>
-        <p class="btnbox">
-            <input id="btnDelete" value="确定" type="button" class="J_closebox" />
-            <input value="取消" type="button" class="J_closebox" />
-        </p>
-    </div>
-    <!--end-->
-    <!--取消发布 start-->
-    <div class="add-openbox" id="J_cancelBox">
-        <h2>取消发布提示<a href="" class="J_closebox xbtn"></a></h2>
-        <p class="l-textinfo">
-            确定取消发布该画家吗？取消后将无法在前台显示。
-        </p>
-        <p class="btnbox">
-            <input value="确定" type="button" class="J_closebox" />
-            <input value="取消" type="button" class="J_closebox" />
-        </p>
-    </div>
-    <!--end-->
-    <!--发布 start-->
-    <div class="add-openbox" id="J_issueBox">
-        <h2>发布提示<a href="" class="J_closebox xbtn"></a></h2>
-        <p class="l-textinfo">
-            确定发布该画家吗？发布后将会在前台显示。
-        </p>
-        <p class="btnbox">
-            <input id="btnPublishOK" value="确定" type="button" class="J_closebox" />
-            <input value="取消" type="button" class="J_closebox" />
-        </p>
-    </div>
-    <!--end-->
-    <!--作家详情 start-->
-    <div class="add-openbox zjinfoclass" id="J_zjIinfoBox">
-    </div>
-    <!--end-->
 </div>
+
+<!--添加艺术分类弹框 start-->
+<div class="add-openbox" id="J_addflbox">
+    <h2>添加艺术分类提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="textinfo">添加艺术分类:<input class="addflinp J_addflinp" value="例如：油画家" name="" /></p>
+    <p class="btnbox">
+        <input value="添加" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--删除艺术家分类 start-->
+<div class="add-openbox" id="J_deletelistBox">
+    <h2>删除艺术家分类提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定删除该分类吗？删除该分类后，该分类旗下所有艺术品将删除。请谨慎操作！
+    </p>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--删除艺术家 start-->
+<div class="add-openbox" id="J_deletezzBox">
+    <h2>删除艺术家提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定删除该画家吗？删除该画家后，旗下所有作品将删除。请谨慎操作！
+    </p>
+    <p class="btnbox">
+        <input id="btnDelete" value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--取消发布 start-->
+<div class="add-openbox" id="J_cancelBox">
+    <h2>取消发布提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定取消发布该画家吗？取消后将无法在前台显示。
+    </p>
+    <p class="btnbox">
+        <input value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--发布 start-->
+<div class="add-openbox" id="J_issueBox">
+    <h2>发布提示<a href="" class="J_closebox xbtn"></a></h2>
+    <p class="l-textinfo">
+        确定发布该画家吗？发布后将会在前台显示。
+    </p>
+    <p class="btnbox">
+        <input id="btnPublishOK" value="确定" type="button" class="J_closebox" />
+        <input value="取消" type="button" class="J_closebox" />
+    </p>
+</div>
+<!--end-->
+<!--作家详情 start-->
+<div class="add-openbox zjinfoclass" id="J_zjIinfoBox">
+</div>
+<!--end-->
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -125,8 +123,10 @@
 
         $("#btnDelete").click(function () {
             var url = currentElement.attr("url");
+            var btn = this;
             webExpress.utility.ajax.request(url, null, function (data) {
                 if (data.IsSuccess) {
+                    adminjs.closewinbox($(btn).closest(".add-openbox"));
                     refresh(currentPageIndex);
                 }
                 else {
@@ -207,9 +207,8 @@
     var currentPageIndex = 0;
     var currentNamePart = "";
     var currentProfessionId = null;
-    function refresh(pageIndex) { 
-
-        var url = "Artist/List";
+    function refresh(pageIndex) {
+        var url = "/Artist/List";
         var criteria = { NamePart: currentNamePart, ProfessionId: currentProfessionId, PagingRequest: { PageIndex: pageIndex, PageSize: 10 } };
         webExpress.utility.ajax.request(url, criteria,
             function (data) {

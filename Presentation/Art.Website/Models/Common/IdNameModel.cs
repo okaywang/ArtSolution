@@ -1,4 +1,5 @@
-﻿using Art.Data.Domain;
+﻿using Art.Data.Common;
+using Art.Data.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

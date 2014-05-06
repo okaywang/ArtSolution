@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Art.Data.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class Artist : BaseEntity, IIdNameEntity
+    public class Artist : BaseEntity, IIdNameEntity, ISoftDelete
     {
         public Artist()
         {
@@ -25,8 +26,6 @@ namespace Art.Data.Domain
 
         [MaxLength(30)]
         public string School { get; set; }
-
-        public bool IsDeleted { get; set; }
 
         public bool IsPublic { get; set; }
 

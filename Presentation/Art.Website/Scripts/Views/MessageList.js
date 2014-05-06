@@ -130,10 +130,10 @@ art.ui.view = {};
                 _criteria.PagingRequest.PageIndex = pageIndex;
             }
             webExpress.utility.ajax.request(url, _criteria,
-                function () {
+                function (data) {
                     renderRecordsHtml(data);
                 },
-                function (data) {
+                function () {
                 }
              );
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class ReplyMap : EntityTypeConfiguration<Reply>
+    public class ReplyMap : ArtEntityTypeConfiguration<Reply>
     {
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Art.Website.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,12 +13,16 @@ namespace Art.Website
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+             
+            var route = new Route("{category}/{filename}", null, new RouteValueDictionary(new { category = "icon|aaa" }), new ImageRouteHandler());
+            routes.Add("ImagesRoute", route);
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Message", action = "List", id = UrlParameter.Optional }
+                defaults: new { controller = "Artwork", action = "Types", id = UrlParameter.Optional }
             );
+
         }
     }
 }

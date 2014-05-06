@@ -50,6 +50,10 @@
     <Compile Include="MessageController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\Art.Data.Common\Art.Data.Common.csproj">
+      <Project>{449228d3-3f33-445a-8733-1ae940671d41}</Project>
+      <Name>Art.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\Art.Data.Database\Art.Data.Db.SqlServer.csproj">
       <Project>{af516929-852a-4580-ab4d-b5833a3e70d5}</Project>
       <Name>Art.Data.Db.SqlServer</Name>

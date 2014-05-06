@@ -35,7 +35,7 @@ namespace Art.Data.Database
 
         public virtual T GetById(object id)
         {
-            return this.dbSet.Find(id);
+            return this.BbSet.Find(id);
         }
 
         public virtual void Insert(T entity)
@@ -45,7 +45,7 @@ namespace Art.Data.Database
                 if (entity == null)
                     throw new ArgumentNullException("entity");
 
-                this.dbSet.Add(entity);
+                this.BbSet.Add(entity);
 
                 this._context.SaveChanges();
             }
@@ -93,7 +93,7 @@ namespace Art.Data.Database
                 if (entity == null)
                     throw new ArgumentNullException("entity");
 
-                this.dbSet.Remove(entity);
+                this.BbSet.Remove(entity);
 
                 this._context.SaveChanges();
             }
@@ -114,17 +114,19 @@ namespace Art.Data.Database
         public virtual IQueryable<T> Table
         {
             get
-            { 
-                return this.dbSet;
+            {
+                return this.BbSet;
             }
         }
 
-        protected virtual IDbSet<T> dbSet
+        protected virtual IDbSet<T> BbSet
         {
             get
             {
                 if (_dbSet == null)
+                {
                     _dbSet = _context.Set<T>();
+                }
                 return _dbSet;
             }
         }

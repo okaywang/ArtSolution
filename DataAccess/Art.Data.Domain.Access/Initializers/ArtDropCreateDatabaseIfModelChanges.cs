@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Art.Data.Common;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;

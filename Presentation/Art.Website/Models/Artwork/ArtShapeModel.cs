@@ -12,9 +12,9 @@ namespace Art.Website.Models
         public string Name { get; set; }
     }
 
-    public class ArtShapeTranslator : TranslatorBase<ArtShape, ArtShapeModel>
+    public class ArtShapeModelTranslator : TranslatorBase<ArtShape, ArtShapeModel>
     {
-        public static readonly ArtShapeTranslator Instance = new ArtShapeTranslator();
+        public static readonly ArtShapeModelTranslator Instance = new ArtShapeModelTranslator();
 
         public override ArtShapeModel Translate(ArtShape from)
         {
