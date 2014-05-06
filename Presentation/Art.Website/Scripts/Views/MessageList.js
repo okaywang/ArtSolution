@@ -44,11 +44,10 @@ art.ui.view = {};
                 _criteria.PagingRequest.PageIndex = pageIndex;
             }
             webExpress.utility.ajax.request(url, _criteria,
-                function () {
-
+                function (data) { 
+                    renderRecordsHtml(data);
                 },
-                function (data) {
-                    renderHtml(data.responseText);
+                function () {
                 }
              );
         }
@@ -62,7 +61,7 @@ art.ui.view = {};
             });
         }
 
-        function renderHtml(html) {
+        function renderRecordsHtml(html) {
             $(".noticeData").html(html);
             $(".noticeData .grid-pager a[pageIndex]").click(function () {
                 refresh($(this).attr("pageIndex"));
@@ -132,10 +131,9 @@ art.ui.view = {};
             }
             webExpress.utility.ajax.request(url, _criteria,
                 function () {
-
+                    renderRecordsHtml(data);
                 },
                 function (data) {
-                    renderRecordsHtml(data.responseText);
                 }
              );
         }
