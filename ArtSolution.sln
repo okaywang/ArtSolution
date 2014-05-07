@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebExpress.Website", "WebEx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Art.Data.Common", "DataAccess\Art.Data.Common\Art.Data.Common.csproj", "{449228D3-3F33-445A-8733-1AE940671D41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Art.BussinessLogic.Entities", "Art.BussinessLogic.Entities\Art.BussinessLogic.Entities.csproj", "{92477C11-E258-4AA6-B004-A03B0E0BB483}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,12 +85,17 @@ Global
 		{449228D3-3F33-445A-8733-1AE940671D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{449228D3-3F33-445A-8733-1AE940671D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{449228D3-3F33-445A-8733-1AE940671D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92477C11-E258-4AA6-B004-A03B0E0BB483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92477C11-E258-4AA6-B004-A03B0E0BB483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92477C11-E258-4AA6-B004-A03B0E0BB483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92477C11-E258-4AA6-B004-A03B0E0BB483}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6DB25716-E246-475D-AEC3-513107464DBC} = {04798033-3D57-4063-AE69-FBE14F07B350}
+		{92477C11-E258-4AA6-B004-A03B0E0BB483} = {04798033-3D57-4063-AE69-FBE14F07B350}
 		{83E133A9-E8F3-4ECB-B4EC-5A163F3AD3D1} = {26C8D12C-A99D-4BB9-A4E2-12B2E7537D6D}
 		{AF516929-852A-4580-AB4D-B5833A3E70D5} = {26C8D12C-A99D-4BB9-A4E2-12B2E7537D6D}
 		{EA13D35D-AC04-48A3-A20F-7E7085400C3D} = {26C8D12C-A99D-4BB9-A4E2-12B2E7537D6D}

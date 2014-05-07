@@ -38,7 +38,7 @@ namespace Art.Data.Database
             return this.BbSet.Find(id);
         }
 
-        public virtual void Insert(T entity)
+        public virtual T Insert(T entity)
         {
             try
             {
@@ -48,6 +48,8 @@ namespace Art.Data.Database
                 this.BbSet.Add(entity);
 
                 this._context.SaveChanges();
+
+                return entity;
             }
             catch (DbEntityValidationException dbEx)
             {

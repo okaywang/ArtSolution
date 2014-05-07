@@ -56,12 +56,17 @@
     <Compile Include="Mapping\Artwork\AuctionTypeMap.cs" />
     <Compile Include="Mapping\Artist\ProfessionMap.cs" />
     <Compile Include="Mapping\Customer\CustomerMap.cs" />
+    <Compile Include="Mapping\Customer\AddressMap.cs" />
     <Compile Include="Mapping\GenreMap.cs" />
     <Compile Include="Mapping\AdminUserMap.cs" />
     <Compile Include="Mapping\Artwork\ArtPeriodMap.cs" />
     <Compile Include="Mapping\Artwork\ArtPlaceMap.cs" />
     <Compile Include="Mapping\ExceptionLog.cs" />
     <Compile Include="Mapping\CommentMap.cs" />
+    <Compile Include="Mapping\Order\OrderMap.cs" />
+    <Compile Include="Mapping\Order\OrderDeliveryInfoMap.cs" />
+    <Compile Include="Mapping\Order\OrderInvoiceInfo.cs" />
+    <Compile Include="Mapping\Order\OrderItemMap.cs" />
     <Compile Include="Mapping\ReplyMap.cs" />
     <Compile Include="Mapping\SystemNoticeMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

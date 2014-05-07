@@ -44,12 +44,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistBussinessLogic.cs" />
+    <Compile Include="OrderBussinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBussinessLogic.cs" />
     <Compile Include="ArtworkBussinessLogic.cs" />
     <Compile Include="MessageController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Art.BussinessLogic.Entities\Art.BussinessLogic.Entities.csproj">
+      <Project>{92477c11-e258-4aa6-b004-a03b0e0bb483}</Project>
+      <Name>Art.BussinessLogic.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\Art.Data.Common\Art.Data.Common.csproj">
       <Project>{449228d3-3f33-445a-8733-1ae940671d41}</Project>
       <Name>Art.Data.Common</Name>

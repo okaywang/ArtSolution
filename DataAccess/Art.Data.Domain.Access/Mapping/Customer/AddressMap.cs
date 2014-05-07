@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain.Access.Mapping
 {
-    public class CustomerMap : ArtEntityTypeConfiguration<Customer>
+    public class AddressMap : ArtEntityTypeConfiguration<Address>
     {
-        public CustomerMap()
-        {
-            
+        public AddressMap()
+        { 
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Art.Data.Domain.Access
     public partial interface IRepository<T> where T : BaseEntity
     {
         T GetById(object id);
-        void Insert(T entity);
+        T Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
         IQueryable<T> Table { get; }

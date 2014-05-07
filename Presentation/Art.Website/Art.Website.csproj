@@ -225,6 +225,8 @@
     <Compile Include="Models\Message\MessageModel.cs" />
     <Compile Include="Models\Message\SystemNoticeModel.cs" />
     <Compile Include="Models\Message\SystemNoticeSearchCriteria.cs" />
+    <Compile Include="Models\Order\AddOrderModel.cs" />
+    <Compile Include="Models\Order\OrderManageModel.cs" />
     <Compile Include="Models\Translators\ITranslator.cs" />
     <Compile Include="Models\ProfessionModel.cs" />
     <Compile Include="Models\Translators\TranslatorBase.cs" />
@@ -434,6 +436,7 @@
     <Content Include="Views\Message\_NoticeList.cshtml" />
     <Content Include="Views\Message\_CommentList.cshtml" />
     <Content Include="Views\Artwork\_TypesList.cshtml" />
+    <Content Include="Views\Order\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -443,6 +446,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Art.BussinessLogic.Entities\Art.BussinessLogic.Entities.csproj">
+      <Project>{92477c11-e258-4aa6-b004-a03b0e0bb483}</Project>
+      <Name>Art.BussinessLogic.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BussinessLogic\Art.BussinessLogic\Art.BussinessLogic.csproj">
       <Project>{6db25716-e246-475d-aec3-513107464dbc}</Project>
       <Name>Art.BussinessLogic</Name>
