@@ -56,6 +56,11 @@ namespace Art.BussinessLogic
             _artworkTypeRepository.Insert(artworkType);
         }
 
+        public void UpdateArtworkType(ArtworkType artworkType)
+        {
+            _artworkTypeRepository.Update(artworkType);
+        }
+
         public bool CanDeleteArtworkType(ArtworkType artworkType, out List<string> reasons)
         {
             reasons = new List<string>();

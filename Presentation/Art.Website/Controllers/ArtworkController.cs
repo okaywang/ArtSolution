@@ -46,6 +46,25 @@ namespace Art.Website.Controllers
         
         }
 
+        public void Test()
+        {
+            var artworkType = ArtworkBussinessLogic.Instance.GetArtworkType(2);
+            artworkType.ArtMaterials.Remove(artworkType.ArtMaterials.First());
+            artworkType.ArtMaterials.Add(new ArtMaterial {  Name="ttttttttttt"});
+
+            ArtworkBussinessLogic.Instance.UpdateArtworkType(artworkType);
+        }
+
+        public ActionResult UpdateArtworkType(ArtworkTypeModel model)
+        {
+            var artworkType = ArtworkTypeModelTranslator.Instance.Translate(model);
+            ArtworkBussinessLogic.Instance.UpdateArtworkType(artworkType);
+
+            var result = new ResultModel(true, string.Empty);
+            return Json(result);
+
+        }
+
         public PartialViewResult ArtworkTypes()
         {
             var artworkTypes = GetArtworkTypes();
@@ -57,11 +76,6 @@ namespace Art.Website.Controllers
             var artworkTypes = ArtworkBussinessLogic.Instance.GetArtworkTypes();
             var artworkTypeModels = ArtworkTypeModelTranslator.Instance.Translate(artworkTypes);
             return artworkTypeModels;
-        }
-
-        public JsonResult UpdateArtworkType(ArtworkTypeModel model)
-        {
-            return null;
         }
 
         public ActionResult Index()

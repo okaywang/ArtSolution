@@ -19,8 +19,8 @@
                             <div class="itembox J_caizhi">
                                 @foreach (var material in item.ArtMaterials)
                                 {
-                                    <span class="t-item">
-                                        <span class="t-text J_t_text" itemId="@material.Id">@material.Name</span>
+                                    <span class="t-item" itemId="@material.Id">
+                                        <span class="t-text J_t_text">@material.Name</span>
                                         <input class="icondele J_deleBtn" type="button"  ifshow="@material.IsUsed.ToString().ToLower()" />
                                     </span>    
                                 }
@@ -30,8 +30,8 @@
                             <div class="itembox J_xingzhi">
                                 @foreach (var shape in item.ArtShapes)
                                 {
-                                    <span class="t-item">
-                                        <span class="t-text J_t_text" itemId="@shape.Id" >@shape.Name</span>
+                                    <span class="t-item" itemId="@shape.Id">
+                                        <span class="t-text J_t_text" >@shape.Name</span>
                                         <input class="icondele J_deleBtn" type="button" ifshow="@shape.IsUsed.ToString().ToLower()" />
                                     </span>    
                                 }
@@ -41,8 +41,8 @@
                             <div class="itembox J_jifa">
                                 @foreach (var technique in item.ArtTechniques)
                                 { 
-                                    <span class="t-item">
-                                        <span class="t-text J_t_text" itemId="@technique.Id" >@technique.Name</span>
+                                    <span class="t-item" itemId="@technique.Id">
+                                        <span class="t-text J_t_text"  >@technique.Name</span>
                                         <input class="icondele J_deleBtn" type="button" value="" name="" ifshow="@technique.IsUsed.ToString().ToLower()" />
                                     </span>
                                 }

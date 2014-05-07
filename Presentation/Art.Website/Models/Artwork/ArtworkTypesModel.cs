@@ -1,4 +1,5 @@
-﻿using Art.Data.Domain;
+﻿using Art.BussinessLogic;
+using Art.Data.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,17 +44,76 @@ namespace Art.Website.Models
             to.Name = from.Name;
             to.ArtMaterials = ArtMaterialModelTranslator.Instance.Translate(from.ArtMaterials);
             to.ArtShapes = ArtShapeModelTranslator.Instance.Translate(from.ArtShapes);
-            to.ArtTechniques = ArtTechniqueModelTranslator.Instance.Translate(from.ArtTechniques);  
+            to.ArtTechniques = ArtTechniqueModelTranslator.Instance.Translate(from.ArtTechniques);
             return to;
         }
 
         public override ArtworkType Translate(ArtworkTypeModel from)
         {
             var to = new ArtworkType();
+            if (from.Id > 0)
+            {
+                to = ArtworkBussinessLogic.Instance.GetArtworkType(from.Id);
+            }
             to.Name = from.Name;
-            to.ArtMaterials = from.ArtMaterials.Select(i => new ArtMaterial { Name = i.Name }).ToList();
-            to.ArtShapes = from.ArtShapes.Select(i => new ArtShape { Name = i.Name }).ToList();
-            to.ArtTechniques = from.ArtTechniques.Select(i => new ArtTechnique { Name = i.Name }).ToList();
+
+
+            to.ArtMaterials = new List<ArtMaterial>();
+
+            foreach (var item in from.ArtMaterials)
+            {
+                if (item.Id > 0)
+                {
+                    var artwork = ArtworkBussinessLogic.Instance.GetArtMaterial(item.Id);
+                    artwork.Name = item.Name;
+                    to.ArtMaterials.Add(artwork);
+                }
+                else
+                {
+                    to.ArtMaterials.Add(new ArtMaterial
+                    {
+                        Name = item.Name,
+                    });
+                }
+            }
+
+
+            to.ArtShapes = new List<ArtShape>();
+            foreach (var item in from.ArtShapes)
+            {
+                if (item.Id > 0)
+                {
+                    var artshape = ArtworkBussinessLogic.Instance.GetArtShape(item.Id);
+                    artshape.Name = item.Name;
+                    to.ArtShapes.Add(artshape);
+                }
+                else
+                {
+                    to.ArtShapes.Add(new ArtShape
+                    {
+                        Name = item.Name,
+                    });
+                }
+            }
+
+
+            to.ArtTechniques = new List<ArtTechnique>();
+            foreach (var item in from.ArtTechniques)
+            {
+                if (item.Id > 0)
+                {
+                    var technique = ArtworkBussinessLogic.Instance.GetArtTechnique(item.Id);
+                    technique.Name = item.Name;
+                    to.ArtTechniques.Add(ArtworkBussinessLogic.Instance.GetArtTechnique(item.Id));
+                }
+                else
+                {
+                    to.ArtTechniques.Add(new ArtTechnique
+                    {
+                        Name = item.Name,
+                    });
+                }
+            }
             return to;
         }
     }

@@ -10,20 +10,17 @@ art.ui.view = {};
         function _init() {
             _self.addType = addType;
             _self.removeType = removeType;
-            _self.editType = editType;
+            _self.updateType = updateType;
             _self.refresh = refresh;
         }
 
-        function addType(typeName, materials, shapes, techniques) {
+        function addType(artworkType,onSuccess) {
             var url = "/Artwork/AddArtworkType";
-            var artworkType = {
-                Name: typeName,
-                ArtMaterials: materials,
-                ArtShapes: shapes,
-                ArtTechniques: techniques
-            };
             webExpress.utility.ajax.request(url, artworkType, function (data) {
                 if (data.IsSuccess) {
+                    if (onSuccess) {
+                        onSuccess();
+                    }
                     refresh();
                 }
             });
@@ -40,8 +37,16 @@ art.ui.view = {};
             });
         }
 
-        function editType() {
-
+        function updateType(artworkType,onSuccess) {
+            var url = "/Artwork/UpdateArtworkType";
+            webExpress.utility.ajax.request(url, artworkType, function (data) {
+                if (data.IsSuccess) {
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                    refresh();
+                }
+            });
         }
 
         function refresh() {
