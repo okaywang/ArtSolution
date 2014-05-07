@@ -49,7 +49,12 @@ namespace Art.Website.Models
 
         public override ArtworkType Translate(ArtworkTypeModel from)
         {
-            throw new NotImplementedException();
+            var to = new ArtworkType();
+            to.Name = from.Name;
+            to.ArtMaterials = from.ArtMaterials.Select(i => new ArtMaterial { Name = i.Name }).ToList();
+            to.ArtShapes = from.ArtShapes.Select(i => new ArtShape { Name = i.Name }).ToList();
+            to.ArtTechniques = from.ArtTechniques.Select(i => new ArtTechnique { Name = i.Name }).ToList();
+            return to;
         }
     }
 }

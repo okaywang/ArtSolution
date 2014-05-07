@@ -10,6 +10,11 @@ namespace Art.Data.Domain
 {
     public class ArtMaterial : BaseEntity,  ISoftDelete
     {
+        public ArtMaterial()
+        {
+            Artworks = new List<Artwork>();
+        }
+
         [MaxLength(70)]
         [Required]
         public string Name { get; set; }

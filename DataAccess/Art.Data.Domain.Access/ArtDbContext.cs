@@ -8,6 +8,7 @@ using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
@@ -42,6 +43,7 @@ namespace Art.Data.Domain.Access
             //modelBuilder.Configurations.Add(new LanguageMap());
 
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
         }

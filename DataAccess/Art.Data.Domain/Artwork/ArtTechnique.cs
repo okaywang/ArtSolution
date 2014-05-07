@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class ArtTechnique:BaseEntity,ISoftDelete
+    public class ArtTechnique : BaseEntity, ISoftDelete
     {
+        public ArtTechnique()
+        {
+            Artworks = new List<Artwork>();
+        }
+
         [MaxLength(50)]
         [Required]
         public string Name { get; set; }
 
         public ArtworkType ArtworkType { get; set; }
 
-        public virtual ICollection<Artwork> Artworks { get; set; } 
+        public virtual ICollection<Artwork> Artworks { get; set; }
     }
 }

@@ -10,7 +10,8 @@ namespace Art.Data.Domain.Access.Mapping
     public class ArtworkTypeMap : ArtEntityTypeConfiguration<ArtworkType>
     {
         public ArtworkTypeMap()
-        { 
+        {
+
         }
     }
 }

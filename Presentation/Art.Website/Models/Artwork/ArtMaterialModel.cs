@@ -22,7 +22,7 @@ namespace Art.Website.Models
             var to = new ArtMaterialModel();
             to.Id = from.Id;
             to.Name = from.Name;
-           
+            to.IsUsed = from.Artworks.Any();
             return to;
         }
 

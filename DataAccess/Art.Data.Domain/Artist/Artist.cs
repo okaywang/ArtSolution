@@ -46,41 +46,5 @@ namespace Art.Data.Domain
 
         public virtual ICollection<Genre> SkilledGenres { get; set; }
     }
-
-
-    //public class Question:BaseEntity
-    //{
-    //    public Question()
-    //    {
-    //        Keywords = new HashSet<Keyword>();
-    //    }
-
-    //    //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-    //    //public int QuestionId { get; set; }
-
-    //    public string QuestionText { get; set; }
-    //    public string PhotoUrl { get; set; }
-    //    public int SortOrder { get; set; }
-    //    public string PdfUrl { get; set; }
-    //    public string VideoUrl { get; set; }
-
-    //    public ICollection<Keyword> Keywords { get; set; }
-    //}
-
-    //public class Keyword : BaseEntity
-    //{
-    //    public Keyword()
-    //    {
-    //        Questions = new HashSet<Question>();
-    //    }
-
-    //    //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-    //    //public int KeywordId { get; set; }
-
-    //    public string Description { get; set; }
-    //    public ICollection<Question> Questions { get; set; }
-
-
-
-    //}
+     
 }

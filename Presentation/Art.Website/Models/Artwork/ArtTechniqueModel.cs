@@ -10,6 +10,7 @@ namespace Art.Website.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsUsed { get; set; }
     }
 
     public class ArtTechniqueModelTranslator : TranslatorBase<ArtTechnique, ArtTechniqueModel>
@@ -21,6 +22,7 @@ namespace Art.Website.Models
             var to = new ArtTechniqueModel();
             to.Id = from.Id;
             to.Name = from.Name;
+            to.IsUsed = from.Artworks.Any();
             return to;
         }
 

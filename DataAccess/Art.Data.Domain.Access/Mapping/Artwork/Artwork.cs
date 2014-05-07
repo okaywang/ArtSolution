@@ -12,13 +12,15 @@ namespace Art.Data.Domain.Access.Mapping
         public ArtworkMap()
         {
             this.HasRequired(i => i.Artist);
-            this.HasRequired(i => i.ArtworkType);
+            this.HasRequired(i => i.ArtworkType).WithMany().WillCascadeOnDelete(false);
             this.HasRequired(i => i.ArtMaterial);
 
 
             this.HasMany(t => t.SuitableArtPlaces)
                  .WithMany(t => t.Artworks)
                  .Map(t => t.MapLeftKey("ArtworkId").MapRightKey("ArtPlaceId"));
+
+
         }
     }
 }

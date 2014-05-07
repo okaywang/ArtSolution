@@ -366,6 +366,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Views\ArtistEdit.js" />
+    <Content Include="Scripts\Views\ArtworkTypes.js" />
     <Content Include="Scripts\Views\base\ViewBase.js" />
     <Content Include="Scripts\Views\MessageList.js" />
     <Content Include="Scripts\Views\_references.views.js" />
@@ -432,6 +433,7 @@
     <Content Include="Views\Message\List.cshtml" />
     <Content Include="Views\Message\_NoticeList.cshtml" />
     <Content Include="Views\Message\_CommentList.cshtml" />
+    <Content Include="Views\Artwork\_TypesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

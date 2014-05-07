@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebExpress.Core.Guards;
+using WebExpress.Website.Exceptions;
 
 namespace Art.Website.Controllers
 {
@@ -14,8 +16,7 @@ namespace Art.Website.Controllers
         public ActionResult Types()
         {
             var model = new ArtworkTypesModel();
-            var artworkTypes = ArtworkBussinessLogic.Instance.GetArtworkTypes();
-            model.ArtworkTypes = ArtworkTypeModelTranslator.Instance.Translate(artworkTypes); 
+            model.ArtworkTypes = GetArtworkTypes();
             return View(model);
         }
 
@@ -33,6 +34,29 @@ namespace Art.Website.Controllers
                 model = new ResultModel(false, string.Join(",", reasons));
             }
             return Json(model);
+        }
+
+        public ActionResult AddArtworkType(ArtworkTypeModel model)
+        {
+            var artworkType = ArtworkTypeModelTranslator.Instance.Translate(model);
+            ArtworkBussinessLogic.Instance.AddArtworkType(artworkType);
+
+            var result = new ResultModel(true, string.Empty);
+            return Json(result);
+        
+        }
+
+        public PartialViewResult ArtworkTypes()
+        {
+            var artworkTypes = GetArtworkTypes();
+            return PartialView("_TypesList", artworkTypes);
+        }
+
+        private IList<ArtworkTypeModel> GetArtworkTypes()
+        {
+            var artworkTypes = ArtworkBussinessLogic.Instance.GetArtworkTypes();
+            var artworkTypeModels = ArtworkTypeModelTranslator.Instance.Translate(artworkTypes);
+            return artworkTypeModels;
         }
 
         public JsonResult UpdateArtworkType(ArtworkTypeModel model)
@@ -78,6 +102,8 @@ namespace Art.Website.Controllers
         public ActionResult Edit(int id)
         {
             var artwork = ArtworkBussinessLogic.Instance.GetArtwork(id);
+            Guard.IsNotNull<DataNotFoundException>(artwork);
+
             var artworkModel = ArtworkModelTranslator.Instance.Translate(artwork);
             var model = GetArtworkEditModel(artworkModel);
             return View("Edit", model);

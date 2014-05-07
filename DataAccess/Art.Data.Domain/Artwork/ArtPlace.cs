@@ -10,6 +10,11 @@ namespace Art.Data.Domain
 {
     public class ArtPlace : BaseEntity, IIdNameEntity, ISoftDelete
     {
+        public ArtPlace()
+        {
+            Artworks = new List<Artwork>();
+        }
+
         public string Name { get; set; }
 
         public ICollection<Artwork> Artworks { get; set; }

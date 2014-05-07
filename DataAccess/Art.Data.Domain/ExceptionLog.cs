@@ -9,7 +9,7 @@ namespace Art.Data.Domain
 {
     public class ExceptionLog:BaseEntity
     {
-        [MaxLength(30)]
+        [MaxLength(303)]
         public string AppName { get; set; }
         public string StackTrace { get; set; }
         public string Message { get; set; }

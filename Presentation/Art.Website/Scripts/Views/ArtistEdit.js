@@ -39,6 +39,7 @@
         }
         function initValidation() {
             var options = {
+                ignore: [],
                 rules: {}
             };
             var properties = $("[property-name]");
@@ -49,6 +50,14 @@
                     options.rules[propName] = { required: true };
                 }
             }
+
+            jQuery.validator.addMethod("DateValidate", function (value, element) {
+                var re = /^\d{4}-\d{1,2}-\d{1,2}$/;
+                return re.test(viewModel.Artist.Birthday);
+            }, "请填写合法的日期");
+
+            options.rules["Artist.Birthday"] = { DateValidate: true };
+
             $("form").validate(options);
         }
 

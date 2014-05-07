@@ -51,6 +51,11 @@ namespace Art.BussinessLogic
             return _artworkTypeRepository.GetById(id);
         }
 
+        public void AddArtworkType(ArtworkType artworkType)
+        {
+            _artworkTypeRepository.Insert(artworkType);
+        }
+
         public bool CanDeleteArtworkType(ArtworkType artworkType, out List<string> reasons)
         {
             reasons = new List<string>();
@@ -59,6 +64,14 @@ namespace Art.BussinessLogic
                 reasons.Add("cartoon can not be deleted!");
                 return false;
             }
+
+            var artworks =_artworkRepository.Table.Where(i=>i.ArtworkType.Id == artworkType.Id);
+            if (artworks.Any())
+            {
+                reasons.Add("该分类已被使用，不能删除！");
+                return false;
+            }
+
             return true;
         }
 
@@ -174,5 +187,6 @@ namespace Art.BussinessLogic
         {
             _artworkRepository.Delete(artwork);
         }
+
     }
 }
