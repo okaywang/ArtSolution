@@ -33,6 +33,8 @@ namespace Art.Website.Models
 
         public string Masterpiece { get; set; }
 
+        public int MasterpieceTypeId { get; set; }
+
         public string PrizeItems { get; set; }
 
         public Genders Gender { get; set; }
@@ -60,6 +62,8 @@ namespace Art.Website.Models
             to.School = from.School;
             to.PrizeItems = from.PrizeItems;
             to.Masterpiece = from.Masterpiece;
+            to.MasterpieceTypeId = from.MasterpieceTypeId;
+
             if (!string.IsNullOrEmpty(from.AvatarFileName))
             {
                 to.AvatarFileName = Path.Combine(ConfigSettings.Instance.UploadedFileFolder, from.AvatarFileName);
@@ -82,7 +86,7 @@ namespace Art.Website.Models
             to.School = from.School;
             to.PrizeItems = from.PrizeItems;
             to.Masterpiece = from.Masterpiece;
-
+            to.MasterpieceTypeId = from.MasterpieceTypeId;
             if (!string.IsNullOrEmpty(from.AvatarFileName))
             {
                 to.AvatarFileName = Path.GetFileName(from.AvatarFileName);

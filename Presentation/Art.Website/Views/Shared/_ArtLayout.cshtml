@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head lang="en">
+    <title>@ViewBag.Title</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://192.168.1.118:8080/ysp-shop/admin/css/admin.css" />
     <link rel="stylesheet" href="http://192.168.1.118:8080/ysp-shop/admin/css/header.css" />
@@ -115,46 +116,8 @@
         <footer class="footer">
             Copyright Reserved 2013-2014 易淘艺术网络科技(北京)有限公司版权所有
         </footer>
-
-        <div class="add-openbox" id="J_add-openbox">
-            <h2>添加作者提示<a href="" class="J_closebox xbtn"></a></h2>
-            <p class="textinfo">新增作者成功，现在就去添加作者作品</p>
-            <p class="btnbox">
-                <input value="现在就去" type="button" class="J_closebox" />
-                <input value="稍后再说，继续填加作者" type="button" class="J_closebox" />
-            </p>
-        </div>
-
-        <div class="add-openbox" id="J_add-quxiaobox">
-            <h2>放弃提示<a href="" class="J_closebox xbtn"></a></h2>
-            <p class="textinfo">确定放弃本次添加？</p>
-            <p class="btnbox">
-                <input value="确定" type="button" class="J_closebox" />
-                <input value="取消" type="button" class="J_closebox" />
-            </p>
-        </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            //弹框
-            var adminjs = new adminglass();//实例化后台类
-
-            //关闭弹层
-            adminjs.closewinbox();
-
-            //新增
-            //$('#J_addbtn').click(function () {
-            //    adminjs.openwinbox('#J_add-openbox');
-            //    return false;
-            //});
-            //取消
-            //$('#J_quxiaobtn').click(function () {
-            //    adminjs.openwinbox('#J_add-quxiaobox');
-            //    return false;
-            //});
-
-        })
-    </script>
+    
+    @RenderSection("scripts", false)
 </body>
 </html>

@@ -6,14 +6,13 @@
 
     function ArtistEditClass() {
         var _self = this;
+        var _adminJs = new adminglass();
         art.ui.view.ViewBase.call(_self);
 
         function _init() {
             _self.init = init;
 
             _self.bindModel = bindModel;
-
-            _self.save = save;
         }
 
         function init() {
@@ -33,10 +32,40 @@
                 $("form").validate().cancelSubmit = true;
                 $("form").submit();
             });
+
+            $(".J_closebox").click(function () {
+                var box = $(this).closest(".add-openbox");
+                _adminJs.closewinbox(box);
+            });
+
+            $("#btnConfirmToAddArtwork").click(function () {
+                location.href = "/Artwork/Add?artistId=" + viewModel.Artist.Id;
+            });
+
+            $("#btnConfirmToAddArtist").click(function () {
+                location.href = "/Artist/Add";
+            });
+
+            $("#btnConfirm").click(function () {
+                location.href = location.href;
+            });
+
+            $("#btnCancel").click(function () {
+                var box = $(this).closest(".add-openbox");
+                _adminJs.closewinbox(box);
+            });
+
+            $("#J_quxiaobtn").click(function () {
+                _adminJs.openwinbox('#J_add-quxiaobox');
+            });
+
+            $("iframe").load(iframeFileUpload_onload);
         }
-        function initDomElement() { 
+
+        function initDomElement() {
             _self.attachBindingAttribute();
         }
+
         function initValidation() {
             var options = {
                 ignore: [],
@@ -94,12 +123,26 @@
         function save(model) {
             var url = model.Artist.Id > 0 ? "/Artist/Update" : "/Artist/Add";
             webExpress.utility.ajax.request(url, model.Artist,
-            function () {
-                alert("success");
+            function (response) {
+                viewModel.Artist.set("Id", response.Data);
+                console.dir(response);
+                _adminJs.openwinbox('#J_add-openbox');
             },
             function () {
                 alert("error");
             });
+        }
+
+        function iframeFileUpload_onload() {
+            var jsonString = $(this).contents().find("body").html();
+            var model = $.parseJSON(jsonString);
+            if (model.IsSuccess) {
+                var fullFilePath = webExpress.utility.url.getFullUrl(model.UploadedFileName);
+                viewModel.Artist.set("AvatarFileName", fullFilePath);
+            }
+            else {
+                alert(model.Message);
+            }
         }
 
         _init();

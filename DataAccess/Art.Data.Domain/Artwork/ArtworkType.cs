@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Art.Data.Domain
 {
-    public class ArtworkType : BaseEntity, ISoftDelete
+    public class ArtworkType : BaseEntity, ISoftDelete, IIdNameEntity
     {
         [MaxLength(50)]
         public string Name { get; set; }
@@ -17,6 +17,6 @@ namespace Art.Data.Domain
 
         public virtual ICollection<ArtShape> ArtShapes { get; set; }
 
-        public virtual ICollection<ArtTechnique> ArtTechniques { get; set; } 
+        public virtual ICollection<ArtTechnique> ArtTechniques { get; set; }
     }
 }

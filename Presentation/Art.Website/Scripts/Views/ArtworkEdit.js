@@ -149,6 +149,10 @@
                 return element.Id == model.Artwork.ArtworkTypeId;
             })[0];
 
+            if (model.Artwork.Id == 0) {
+                model.Artwork.AuctionPrice = "";
+            }
+
             model.SourceArtMaterials = getArtworkTypeSubItem(artworkType, "ArtMaterials");
             model.SourceArtShapes = getArtworkTypeSubItem(artworkType, "ArtShapes");
             model.SourceArtTechniques = getArtworkTypeSubItem(artworkType, "ArtTechniques");

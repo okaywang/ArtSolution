@@ -1,43 +1,15 @@
 ﻿@model ArtistEditModel
-
-@{    
+@{  
+    var _isEditModel = Model.Artist.Id > 0;
+    var _saveButtonText = _isEditModel ? "保存" : "新增";
+    var _viewFeature = _isEditModel ? "编辑艺术家" : "添加艺术家";
     Func<Expression<Func<ArtistEditModel, object>>, string> PropName = WebExpress.Core.Expressions.PropertyName<Art.Website.Models.ArtistEditModel>.For;
     Layout = "~/Views/Shared/_ArtLayout.cshtml";
-    ViewBag.Title = "Add Artist";
+    ViewBag.Title = _viewFeature;
 }
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/Views/ArtistEdit.js"></script>
-<script src="~/Scripts/Extension/kendo.Extension.js"></script>
-<script src="~/Scripts/webExpress/webExpress.controls.adpaters.js"></script>
-<script>
-    $(function () {
-		@{ var str = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(Model); }
-	    var model = @Html.Raw(@str);
-		  
-	    var viewInstance = new art.ui.view.ArtistEdit();
 
-	    viewInstance.init();
-
-	    viewInstance.bindModel(model);
-	}); 
-
-	function iframeFileUpload_onload(iframe){    
-	    var doc = iframe.contentDocument || iframe.contentWindow.document;
-	    if (doc.body.innerHTML) {
-	        var model = $.parseJSON(doc.body.innerHTML);
-	        if (model.IsSuccess) {
-	            var fullFilePath =webExpress.utility.url.getFullUrl(model.UploadedFileName);
-	            viewModel.Artist.set("AvatarFileName",fullFilePath);
-	        }
-	        else {
-	            alert(model.Message);
-	        }
-	    }
-	}
-	
-</script>
 <div class="conterbox addAuthor">
-    <h2 class="crumbs">您所在位置：艺术家管理 > 添加艺术家
+    <h2 class="crumbs">您所在位置：艺术家管理 > @_viewFeature
     </h2>
     <div class="addbox">
         <form action="/Files.axd" method="post" enctype="multipart/form-data" target="iframeFileUpload">
@@ -58,7 +30,7 @@
             <dl class="birthyear clearfix date mandatory" property-name="@PropName(i => i.Artist.Birthday)" control-type="dateSelects" >
                 <dt><i>*</i>出生年月:</dt>
                 <dd>
-                    <select name="Artist.Birthday" >
+                    <select name="Artist.Birthday">
                         <option value="">未填</option>
                         @for (int i = 1949; i <= DateTime.Now.Year; i++)
                         {
@@ -158,8 +130,8 @@
                 <dt><i>*</i>代表作品</dt>
                 <dd>
                     <input type="text" class="representativeinp" />
-                    属性
-					<select>
+                    分类
+					<select data-source="ArtworkTypes" property-name="@PropName(i => i.Artist.MasterpieceTypeId)" control-type="simpleDropdown">
                         <option value="" selected="selected">油画</option>
                         <option value="">国画</option>
                         <option value="">水墨画</option>
@@ -181,11 +153,48 @@
             </dl>
             <p class="yesOrNo">
                 <span>
-                    <input type="button" value="新增" id="J_addbtn" class="btn" /></span>
+                    <input type="button" value="@_saveButtonText" id="J_addbtn" class="btn" /></span>
                 <span>
-                    <input type="submit" value="取消" id="J_quxiaobtn" class="btn" /></span>
+                    <input type="button" value="取消" id="J_quxiaobtn" class="btn" /></span>
             </p>
         </form>
-        <iframe name="iframeFileUpload" onload="iframeFileUpload_onload(this)" style="display: none"></iframe>
+        <iframe name="iframeFileUpload" style="display: none"></iframe>
     </div>
 </div>
+
+<div class="add-openbox" id="J_add-openbox">
+    <h2>添加作者提示<a href="javascript:void(0)" class="J_closebox xbtn"></a></h2>
+    <p class="textinfo">新增作者成功，现在就去添加作者作品</p>
+    <p class="btnbox">
+        <input value="现在就去" type="button" id="btnConfirmToAddArtwork" class="J_closebox" />
+        <input value="稍后再说，继续填加作者" id="btnConfirmToAddArtist" type="button" class="J_closebox" />
+    </p>
+</div>
+
+<div class="add-openbox" id="J_add-quxiaobox">
+    <h2>放弃提示<a href="javascript:void(0)" class="J_closebox xbtn"></a></h2>
+    <p class="textinfo">确定取消？</p>
+    <p class="btnbox">
+        <input value="确定" type="button" id="btnConfirm" />
+        <input value="取消" type="button" id="btnCancel" class="J_closebox" />
+    </p>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/Views/ArtistEdit.js"></script>
+    <script src="~/Scripts/Extension/kendo.Extension.js"></script>
+    <script src="~/Scripts/webExpress/webExpress.controls.adpaters.js"></script>
+    <script>
+        $(function () {
+			@{ var str = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(Model); }
+		    var model = @Html.Raw(@str);
+		  
+		    var viewInstance = new art.ui.view.ArtistEdit();
+
+		    viewInstance.init();
+
+		    viewInstance.bindModel(model);
+		}); 	
+    </script>
+}

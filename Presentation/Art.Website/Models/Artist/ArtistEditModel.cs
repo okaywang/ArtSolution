@@ -16,6 +16,8 @@ namespace Art.Website.Models
         public GenreModel[] SourceGenres { get; set; }
 
         public ValueText[] Degrees { get; set; }
+
+        public IdNameModel[] ArtworkTypes { get; set; }
     }
 
 }

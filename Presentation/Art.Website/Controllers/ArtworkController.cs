@@ -43,14 +43,14 @@ namespace Art.Website.Controllers
 
             var result = new ResultModel(true, string.Empty);
             return Json(result);
-        
+
         }
 
         public void Test()
         {
             var artworkType = ArtworkBussinessLogic.Instance.GetArtworkType(2);
             artworkType.ArtMaterials.Remove(artworkType.ArtMaterials.First());
-            artworkType.ArtMaterials.Add(new ArtMaterial {  Name="ttttttttttt"});
+            artworkType.ArtMaterials.Add(new ArtMaterial { Name = "ttttttttttt" });
 
             ArtworkBussinessLogic.Instance.UpdateArtworkType(artworkType);
         }
@@ -87,6 +87,12 @@ namespace Art.Website.Controllers
         {
             var artwork = new ArtworkModel();
             var model = GetArtworkEditModel(artwork);
+            var artistIdStr = Request.QueryString["artistId"];
+            int artistId;
+            if (int.TryParse(artistIdStr, out artistId))
+            {
+                model.Artwork.ArtistId = artistId;
+            }
             return View("Edit", model);
         }
 

@@ -35,6 +35,8 @@ namespace Art.Data.Domain
         [MaxLength(30)]
         public string Masterpiece { get; set; }
 
+        public int MasterpieceTypeId { get; set; }
+
         [MaxLength(30)]
         public string PrizeItems { get; set; }
 
@@ -45,6 +47,8 @@ namespace Art.Data.Domain
         public virtual ICollection<Profession> Professions { get; set; }
 
         public virtual ICollection<Genre> SkilledGenres { get; set; }
+
+        public virtual ArtworkType MasterpieceType { get; set; }
     }
      
 }

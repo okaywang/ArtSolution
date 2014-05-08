@@ -92,9 +92,9 @@ namespace Art.Website.Controllers
             var artist = ArtistTranslator.Instance.Translate(model);
 
 
-            ArtistBussinessLogic.Instance.Add(artist);
+            var newArtist = ArtistBussinessLogic.Instance.Add(artist);
 
-            var result = new ResultModel(true, "add successfully!");
+            var result = new ResultModel(true, "add successfully!", newArtist.Id);
             return Json(result);
         }
 
@@ -152,22 +152,24 @@ namespace Art.Website.Controllers
         {
             var professions = Art.BussinessLogic.ArtistBussinessLogic.Instance.GetProfessions();
             var genres = Art.BussinessLogic.ArtistBussinessLogic.Instance.GetGenres();
+            var artworkTypes = Art.BussinessLogic.ArtworkBussinessLogic.Instance.GetArtworkTypes();
             var model = new ArtistEditModel
             {
                 Artist = ArtistTranslator.Instance.Translate(artist),
                 SourceProfessions = ProfessionTranslator.Instance.Translate(professions).ToArray(),
                 SourceGenres = GenreTranslator.Instance.Translate(genres).ToArray(),
-                Degrees = EnumExtenstion.GetValueTexts<Degree>()
+                Degrees = EnumExtenstion.GetValueTexts<Degree>(),
+                ArtworkTypes = IdNameModelTranslator<ArtworkType>.Instance.Translate(artworkTypes).ToArray()
             };
             return model;
         }
         #endregion
-         
+
         #region Types Page
         public ActionResult Types()
         {
             return View();
-        } 
+        }
         #endregion
     }
 }

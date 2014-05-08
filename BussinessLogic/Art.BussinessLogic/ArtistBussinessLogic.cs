@@ -86,9 +86,10 @@ namespace Art.BussinessLogic
             return genre;
         }
 
-        public void Add(Artist artist)
+        public Artist Add(Artist artist)
         {
-            _artistRepository.Insert(artist);
+           var result =  _artistRepository.Insert(artist);
+           return result;
         }
 
         public void Update(Artist artist)
