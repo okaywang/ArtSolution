@@ -50,11 +50,12 @@
     <Compile Include="Mapping\Artist\ArtistMap.cs" />
     <Compile Include="Mapping\Artwork\ArtMaterialMap.cs" />
     <Compile Include="Mapping\Artwork\ArtTechniqueMap.cs" />
-    <Compile Include="Mapping\Artwork\Artwork.cs" />
+    <Compile Include="Mapping\Artwork\ArtworkMap.cs" />
     <Compile Include="Mapping\Artwork\ArtShapeMap.cs" />
     <Compile Include="Mapping\Artwork\ArtworkTypeMap.cs" />
     <Compile Include="Mapping\Artwork\AuctionTypeMap.cs" />
     <Compile Include="Mapping\Artist\ProfessionMap.cs" />
+    <Compile Include="Mapping\Auction\AcitonBillMap.cs" />
     <Compile Include="Mapping\Customer\CustomerMap.cs" />
     <Compile Include="Mapping\Customer\AddressMap.cs" />
     <Compile Include="Mapping\GenreMap.cs" />

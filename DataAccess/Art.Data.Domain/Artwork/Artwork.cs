@@ -27,6 +27,16 @@ namespace Art.Data.Domain
 
         public bool IsPublic { get; set; }
 
+        
+        public decimal? FeePackageGeneral { get; set; }
+
+        public decimal? FeePackageFine { get; set; }
+
+        public decimal? FeeDeliveryLocal { get; set; }
+
+        public decimal? FeeDeliveryNonlocal { get; set; } 
+
+        
         public virtual ICollection<ArtPlace> SuitableArtPlaces { get; set; }
 
         public virtual ArtworkType ArtworkType { get; set; }
@@ -34,4 +44,5 @@ namespace Art.Data.Domain
         public virtual ArtShape ArtShape { get; set; }
         public virtual ArtTechnique ArtTechnique { get; set; }
     }
+     
 }

@@ -48,6 +48,7 @@
     <Compile Include="Artwork\ArtMaterial.cs" />
     <Compile Include="Artwork\ArtShape.cs" />
     <Compile Include="Artwork\AuctionType.cs" />
+    <Compile Include="Auction\AuctionBill.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="CommonEnitities\Genre.cs" />
@@ -74,6 +75,7 @@
       <Name>Art.Data.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

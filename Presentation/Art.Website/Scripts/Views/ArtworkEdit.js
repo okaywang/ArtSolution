@@ -70,6 +70,29 @@
             options.rules["Artwork.StartDateTime"] = { DateValidate: true };
             options.rules["Artwork.EndDateTime"] = { DateValidate: true };
 
+            options.rules["Artwork.FeePackageGeneral"] = { number: true, required: "[name='Artwork.FeePackageGeneralEnabled']:checked" };
+            options.rules["Artwork.FeePackageFine"] = { number: true, required: "[name='Artwork.FeePackageFineEnabled']:checked" };
+            options.rules["Artwork.FeeDeliveryLocal"] = { number: true, required: "[name='Artwork.FeeDeliveryLocalEnabled']:checked" };
+            options.rules["Artwork.FeeDeliveryNonLocal"] = { number: true, required: "[name='Artwork.FeeDeliveryNonLocalEnabled']:checked" };
+            
+
+            jQuery.validator.addMethod("require_from_group", function (value, element, options) {
+                var flg = $(options[1]).filter(":checked").length > 0;
+                if (flg) {
+                    $(options[1]).filter("label.error").hide();
+                }
+                return flg;
+            }, "至少选择一种方式");
+
+            jQuery.validator.addClassRules("FeePackage", {
+                require_from_group: [1, ".FeePackage"]
+            });
+
+            jQuery.validator.addClassRules("FeeDelivery", {
+                require_from_group: [1, ".FeeDelivery"]
+            });
+            
+
             $("form").validate(options);
         }
 
@@ -80,7 +103,7 @@
 
             viewModel.Artwork.bind("change", function (item) {
                 if (item.field == "Artwork.ArtworkTypeId") {
-                    var artworkTypeId = item.sender.get(); 
+                    var artworkTypeId = item.sender.get();
                     var artworkType = $.grep(model.SourceArtworkTypes, function (element, index) {
                         return element.Id == artworkTypeId;
                     })[0];
@@ -95,7 +118,7 @@
 
                     var materials = getArtworkTypeSubItem(artworkType, "ArtTechniques");
                     viewModel.set("SourceArtTechniques", materials);
-                    viewModel.Artwork.set("ArtTechniqueId", ""); 
+                    viewModel.Artwork.set("ArtTechniqueId", "");
                 }
             });
 
@@ -103,7 +126,7 @@
         }
 
         function getArtworkTypeSubItem(artworkType, itemTypeName) {
-            var sourceItems = [{ Id: "", Name: "未选" }];           
+            var sourceItems = [{ Id: "", Name: "未选" }];
             if (!artworkType) {
                 return sourceItems;
             }
@@ -112,7 +135,7 @@
             }
             return sourceItems;
         }
-         
+
         function parseModel(model) {
             for (var i = 0; i < model.Artwork.SuitablePlaceIds.length; i++) {
                 model.Artwork.SuitablePlaceIds[i] += "";

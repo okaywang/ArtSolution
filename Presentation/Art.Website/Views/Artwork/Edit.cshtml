@@ -5,7 +5,6 @@
     ViewBag.Title = "art worktype manage";
 }
 
-<script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/Views/ArtworkEdit.js"></script>
 <script src="~/Scripts/Extension/kendo.Extension.js"></script>
 <script src="~/Scripts/webExpress/webExpress.controls.adpaters.js"></script>
@@ -19,7 +18,7 @@
                 <dt><i>*</i>作品名称:</dt>
                 <dd>
                     <input type="text" name="" value="" class="inp" />
-                    @*<span class="t-errormessage">请填写作品名称</span>*@
+                    <label for="@PropName(i => i.Artwork.Name)" class="error t-errormessage">请填写作品名称</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group mandatory" property-name="@PropName(i => i.Artwork.ArtistId)" control-type="simpleDropdown">
@@ -32,6 +31,7 @@
                             <option value="@item.Id">@item.Name</option>
                         }
                     </select>
+                    <label for="@PropName(i => i.Artwork.ArtistId)" class="error t-errormessage">请选择作者</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group" property-name="@PropName(i => i.Artwork.Institution)" control-type="simpleTextbox">
@@ -42,7 +42,9 @@
             <dl class="clearfix control-group mandatory" property-name="@PropName(i => i.Artwork.Size)" control-type="simpleTextbox">
                 <dt><i>*</i>作品大小:</dt>
                 <dd>
-                    <input type="text" name="" value="" class="inp" /></dd>
+                    <input type="text" name="" value="" class="inp" />
+                    <label for="@PropName(i => i.Artwork.Size)" class="error t-errormessage">请输入作品大小</label>
+                </dd>
             </dl>
             <dl class="clearfix control-group mandatory"  data-source="SourceArtMaterials" property-name="@PropName(i => i.Artwork.ArtMaterialId)" control-type="simpleDropdown">
                 <dt><i>*</i>材质:</dt>
@@ -54,6 +56,7 @@
 							<option value="@item.Id">@item.Name</option>    
 						}*@
                     </select>
+                    <label for="@PropName(i => i.Artwork.ArtMaterialId)" class="error t-errormessage">请选择材质</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group mandatory" property-name="@PropName(i => i.Artwork.PeriodId)" control-type="simpleDropdown">
@@ -66,6 +69,7 @@
                             <option value="@item.Id">@item.Name</option>    
                         }
                     </select>
+                    <label for="@PropName(i => i.Artwork.PeriodId)" class="error t-errormessage">请选择年代</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group mandatory" property-name="@PropName(i => i.Artwork.ArtworkTypeId)" control-type="simpleDropdown">
@@ -78,6 +82,7 @@
                             <option value="@item.Id">@item.Name</option>    
                         }
                     </select>
+                    <label for="@PropName(i => i.Artwork.ArtworkTypeId)" class="error t-errormessage">请选择作品分类</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group mandatory" property-name="@PropName(i => i.Artwork.GenreId)" control-type="simpleDropdown">
@@ -90,6 +95,7 @@
                             <option value="@item.Id">@item.Name</option>    
                         }
                     </select>
+                    <label for="@PropName(i => i.Artwork.GenreId)" class="error t-errormessage">请选择题材</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group" data-source="SourceArtShapes" property-name="@PropName(i => i.Artwork.ArtShapeId)" control-type="simpleDropdown">
@@ -123,6 +129,7 @@
                             <input type="checkbox" name="" value="@item.Id" />
                             @item.Name</span>    
                     }
+                    <label for="@PropName(i => i.Artwork.SuitablePlaceIds)" class="error t-errormessage">请选择适用空间</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group mandatory" property-name="Artwork.ImageFileName" control-type="simpleImg">
@@ -142,12 +149,53 @@
                             <input type="radio" name="" value="@item.Id" />
                             @item.Name</span>                        
                     }
+                    <label for="@PropName(i => i.Artwork.AuctionTypeId)" class="error t-errormessage">请选择拍卖方式</label>
                 </dd>
             </dl>
             <dl class="clearfix control-group mandatory" property-name="@PropName(i => i.Artwork.AuctionPrice)" control-type="simpleTextbox">
                 <dt><i>*</i>拍卖价格:</dt>
                 <dd>
-                    <input type="text" name="" value="" class="inp" />元</dd>
+                    <input type="text" class="inp" />元                    
+					<label for="@PropName(i => i.Artwork.AuctionPrice)" class="error t-errormessage">请选择拍卖价格</label>
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt><i>*</i>包装费:</dt>
+                <dd>
+                    <p class="t-height">
+                        <span class="t-tmoney"  property-name="@PropName(i => i.Artwork.FeePackageGeneralEnabled)" control-type="simpleCheckbox">
+                            <input type="checkbox" class="FeePackage" />一般包装</span>
+                        <input type="text"  property-name="@PropName(i => i.Artwork.FeePackageGeneral)" control-type="simpleTextbox"  class="t-tinp" />元
+                        <label for="@PropName(i => i.Artwork.FeePackageGeneral)" class="error t-errormessage" generated="true"></label>
+                        <label for="@PropName(i => i.Artwork.FeePackageGeneralEnabled)" class="error t-errormessage FeePackage" generated="true"></label>
+                    </p>
+                    <p class="t-height">
+                        <span class="t-tmoney FeePackage" property-name="@PropName(i => i.Artwork.FeePackageFineEnabled)" control-type="simpleCheckbox">
+                            <input type="checkbox" class="FeePackage" />精装</span>
+                        <input type="text" property-name="@PropName(i => i.Artwork.FeePackageFine)" control-type="simpleTextbox" class="t-tinp" />元
+                        <label for="@PropName(i => i.Artwork.FeePackageFine)" class="error t-errormessage" generated="true"></label>
+                        <label for="@PropName(i => i.Artwork.FeePackageFineEnabled)" class="error t-errormessage FeePackage" generated="true"></label>
+                    </p>
+                </dd>
+            </dl>
+            <dl class="clearfix">
+                <dt><i>*</i>运费:</dt>
+                <dd>
+                    <p class="t-height">
+                        <span class="t-tmoney" property-name="@PropName(i => i.Artwork.FeeDeliveryLocalEnabled)" control-type="simpleCheckbox">
+                            <input type="checkbox" class="FeeDelivery" />市内运费</span>
+                        <input type="text"  property-name="@PropName(i => i.Artwork.FeeDeliveryLocal)" control-type="simpleTextbox"  class="t-tinp" />元
+                        <label for="@PropName(i => i.Artwork.FeeDeliveryLocal)" class="error t-errormessage" generated="true"></label>
+                        <label for="@PropName(i => i.Artwork.FeeDeliveryLocalEnabled)" class="error t-errormessage FeeDelivery" generated="true"></label>
+                    </p>
+                    <p class="t-height">
+                        <span class="t-tmoney" property-name="@PropName(i => i.Artwork.FeeDeliveryNonlocalEnabled)" control-type="simpleCheckbox">
+                            <input type="checkbox" class="FeeDelivery" />外地运费</span>
+                        <input type="text" property-name="@PropName(i => i.Artwork.FeeDeliveryNonlocal)" control-type="simpleTextbox" class="t-tinp" />元
+                        <label for="@PropName(i => i.Artwork.FeeDeliveryNonlocal)" class="error t-errormessage FeeDelivery" generated="true"></label>
+                        <label for="@PropName(i => i.Artwork.FeeDeliveryNonlocalEnabled)" class="error t-errormessage FeeDelivery" generated="true"></label>
+                    </p>
+                </dd>
             </dl>
             <dl class="clearfix control-group datetime" property-name="@PropName(i => i.Artwork.StartDateTime)"  control-type="datetimeControl">
                 <dt><i>*</i>开拍时间:</dt>

@@ -38,6 +38,18 @@ namespace Art.Website.Models
 
         public DateTime? StartDateTime { get; set; }
         public DateTime? EndDateTime { get; set; }
+
+        public bool FeePackageGeneralEnabled { get; set; }
+        public decimal? FeePackageGeneral { get; set; }
+
+        public bool FeePackageFineEnabled { get; set; }
+        public decimal? FeePackageFine { get; set; }
+
+        public bool FeeDeliveryLocalEnabled { get; set; }
+        public decimal? FeeDeliveryLocal { get; set; }
+
+        public bool FeeDeliveryNonlocalEnabled { get; set; }
+        public decimal? FeeDeliveryNonlocal { get; set; }
     }
 
     public class ArtworkModelTranslator : TranslatorBase<Artwork, ArtworkModel>
@@ -72,6 +84,16 @@ namespace Art.Website.Models
             to.StartDateTime = from.StartDateTime;
             to.EndDateTime = from.EndDateTime;
 
+            to.FeePackageGeneral = from.FeePackageGeneral;
+            to.FeePackageFine = from.FeePackageFine;
+            to.FeeDeliveryLocal = from.FeeDeliveryLocal;
+            to.FeeDeliveryNonlocal = from.FeeDeliveryNonlocal;
+
+            to.FeePackageFineEnabled = from.FeePackageFine.HasValue;
+            to.FeePackageGeneralEnabled = from.FeePackageGeneral.HasValue;
+            to.FeeDeliveryLocalEnabled = from.FeeDeliveryLocal.HasValue;
+            to.FeeDeliveryNonlocalEnabled = from.FeeDeliveryNonlocal.HasValue;
+
             return to;
         }
 
@@ -102,6 +124,11 @@ namespace Art.Website.Models
             to.AuctionPrice = from.AuctionPrice;
             to.StartDateTime = from.StartDateTime;
             to.EndDateTime = from.EndDateTime;
+
+            to.FeePackageGeneral = from.FeePackageGeneralEnabled ? from.FeePackageGeneral : null;
+            to.FeePackageFine = from.FeePackageFineEnabled ? from.FeePackageFine : null;
+            to.FeeDeliveryLocal = from.FeeDeliveryLocalEnabled ? from.FeeDeliveryLocal : null;
+            to.FeeDeliveryNonlocal = from.FeeDeliveryNonlocalEnabled ? from.FeeDeliveryNonlocal : null;
 
             return to;
         }
