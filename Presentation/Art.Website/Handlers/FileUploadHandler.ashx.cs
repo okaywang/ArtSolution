@@ -13,7 +13,8 @@ namespace Art.Website.Handlers
 {
     public class FileUploadHandler : IHttpHandler
     {
-
+        private int _minWidth = 200;
+        private int _minHeight = 100;
         public void ProcessRequest(HttpContext context)
         {
             var model = new FileUploadModel();
@@ -26,7 +27,7 @@ namespace Art.Website.Handlers
             catch (Exception ex)
             {
                 model.IsSuccess = false;
-                model.Message = "请选择jpg,jpeg,png,gif类型的文件";
+                model.Message = "上传失败！请上传文件";
                 context.Response.Write(ex.Message);
                 return;
             }
@@ -34,10 +35,41 @@ namespace Art.Website.Handlers
             if (Path.GetExtension(file.FileName).ToLower() != ".jpg" && Path.GetExtension(file.FileName).ToLower() != ".png" && Path.GetExtension(file.FileName).ToLower() != ".gif" && Path.GetExtension(file.FileName).ToLower() != ".jpeg")
             {
                 model.IsSuccess = false;
-                model.Message = "请选择jpg,jpeg,png,gif类型的文件";
+                model.Message = "上传失败！请选择jpg,jpeg,png,gif类型的文件";
                 var jsonString = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(model);
                 context.Response.Write(jsonString);
                 return;
+            }
+
+            if (file.ContentLength > 1024 * 1024)//1 M
+            {
+                model.IsSuccess = false;
+                model.Message = "上传失败！文件过大";
+                var jsonString = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(model);
+                context.Response.Write(jsonString);
+                return;
+            }
+
+
+            using (Image image = Image.FromStream(file.InputStream))
+            {
+                if (image.Width < _minWidth)
+                {
+                    model.IsSuccess = false;
+                    model.Message = string.Format("上传失败！图片宽度不能小于{0}", _minWidth);
+                    var jsonString = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(model);
+                    context.Response.Write(jsonString);
+                    return;
+                }
+
+                if (image.Height < _minHeight)
+                {
+                    model.IsSuccess = false;
+                    model.Message = string.Format("上传失败！图片高度不能小于{0}", _minHeight);
+                    var jsonString = WebExpress.Website.Serialization.JavaScriptJsonSerializer.Instance.Serialize(model);
+                    context.Response.Write(jsonString);
+                    return;
+                }
             }
 
             var folderName = ConfigSettings.Instance.UploadedFileFolder;
@@ -63,6 +95,6 @@ namespace Art.Website.Handlers
                 return false;
             }
         }
-         
+
     }
 }

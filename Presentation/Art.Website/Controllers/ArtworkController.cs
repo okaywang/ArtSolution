@@ -135,9 +135,17 @@ namespace Art.Website.Controllers
         {
             var model = new ArtworkManageModel();
 
+
             var defaultCriteria = new ArtworkSearchCriteria(10);
+            int artistId;
+            if (int.TryParse(Request.QueryString["ArtistId"], out artistId))
+            {
+                defaultCriteria.ArtistId = artistId;
+            }
             model.PagedArtworks = GetPagedArtworkModel(defaultCriteria);
 
+            var artists = ArtistBussinessLogic.Instance.GetArtists();
+            model.Artists = IdNameModelTranslator<Artist>.Instance.Translate(artists);
             return View(model);
         }
 

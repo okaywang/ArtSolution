@@ -131,22 +131,20 @@
                 <dd>
                     <input type="text" class="representativeinp" />
                     分类
-					<select data-source="ArtworkTypes" property-name="@PropName(i => i.Artist.MasterpieceTypeId)" control-type="simpleDropdown">
-                        <option value="" selected="selected">油画</option>
-                        <option value="">国画</option>
-                        <option value="">水墨画</option>
-                        <option value="">当代画</option>
+					<select class="mandatory" data-value-field="Id" data-text-field="Name" data-source="ArtworkTypes" property-name="@PropName(i => i.Artist.MasterpieceTypeId)" control-type="simpleDropdown">
+                        
                     </select>
                     <label for="@PropName(i => i.Artist.Masterpiece)" class="error t-errormessage">请填写代表作</label>
+                    <label for="@PropName(i => i.Artist.MasterpieceTypeId)" class="error t-errormessage">请填写作品类型</label>
                 </dd>
             </dl>
             <dl class="authorimg clearfix mandatory" property-name="@PropName(i => i.Artist.AvatarFileName)" control-type="simpleImg">
                 <dt><i>*</i>作者头像</dt>
                 <dd>
-                    <input type="file" name="abc" />
+                    <input type="file" name="file" />
                     <label for="@PropName(i => i.Artist.AvatarFileName)" class="error t-errormessage">请选择头像</label>
                     <div>
-                        <img class="avatar" style="width: 100px;" />
+                        <img class="avatar"  width="200" height="200"/>
                         <input type="hidden" name="@PropName(i => i.Artist.AvatarFileName)" data-bind="value:Artist.AvatarFileName" />
                     </div>
                 </dd>

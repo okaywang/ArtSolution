@@ -1,11 +1,12 @@
 ﻿@model ArtistManageModel
 @{
+    var _viewFeature = "艺术家管理";
     Layout = "~/Views/Shared/_ArtLayout.cshtml";
-    ViewBag.Title = "Manage";
+    ViewBag.Title = _viewFeature;
 }
 
 <div class="conterbox addAuthor">
-    <h2 class="crumbs">您所在位置：艺术家管理 > 艺术家管理
+    <h2 class="crumbs">您所在位置：艺术家管理 > @_viewFeature
     </h2>
     <div class="managebox">
         <div class="searchbox clearfix">
@@ -18,8 +19,8 @@
                                     <option value="@prof.Id">@prof.Name</option>
                                 }
                             </select><input type="submit" value="搜索" name="" id="btnSearch" /></span>
-            <span class="t-addfl">
-                <input type="submit" value="添加分类" name="" class="btn" id="J_addflBtn" /></span>
+            @*<span class="t-addfl">
+                <input type="submit" value="添加分类" name="" class="btn" id="J_addflBtn" /></span>*@
         </div>
 
         <div class="data">
@@ -30,14 +31,14 @@
 </div>
 
 <!--添加艺术分类弹框 start-->
-<div class="add-openbox" id="J_addflbox">
+@*<div class="add-openbox" id="J_addflbox">
     <h2>添加艺术分类提示<a href="" class="J_closebox xbtn"></a></h2>
     <p class="textinfo">添加艺术分类:<input class="addflinp J_addflinp" value="例如：油画家" name="" /></p>
     <p class="btnbox">
         <input value="添加" type="button" class="J_closebox" />
         <input value="取消" type="button" class="J_closebox" />
     </p>
-</div>
+</div>*@
 <!--end-->
 <!--删除艺术家分类 start-->
 <div class="add-openbox" id="J_deletelistBox">
@@ -97,15 +98,18 @@
 
         var adminjs = new adminglass();//实例化后台js类
         //关闭弹层
-        adminjs.closewinbox();
+        $(document).on("click", ".J_closebox", function () {
+            var box = $(this).closest(".add-openbox");
+            adminjs.closewinbox(box);
+        });
         //input文字交互
         adminjs.inpFocusBlur('.J_addflinp');
 
         //添加分类弹框
-        $('#J_addflBtn').click(function () {
-            adminjs.openwinbox('#J_addflbox');
-            return false;
-        });
+        //$('#J_addflBtn').click(function () {
+        //    adminjs.openwinbox('#J_addflbox');
+        //    return false;
+        //});
 
         //删除分类
         $(document).on("click", ".J_deleteflBtn", function () {

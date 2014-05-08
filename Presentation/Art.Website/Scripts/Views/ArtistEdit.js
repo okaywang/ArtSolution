@@ -83,7 +83,7 @@
             jQuery.validator.addMethod("DateValidate", function (value, element) {
                 var re = /^\d{4}-\d{1,2}-\d{1,2}$/;
                 return re.test(viewModel.Artist.Birthday);
-            }, "请填写合法的日期");
+            }, "请填写日期");
 
             options.rules["Artist.Birthday"] = { DateValidate: true };
 
@@ -118,15 +118,24 @@
             if (model.Artist.AvatarFileName) {
                 model.Artist.AvatarFileName = webExpress.utility.url.getFullUrl(model.Artist.AvatarFileName);
             }
+
+            model.ArtworkTypes.unshift({ Id: "", Name: "未选" });
         }
 
         function save(model) {
-            var url = model.Artist.Id > 0 ? "/Artist/Update" : "/Artist/Add";
+            var isEditModel = model.Artist.Id > 0 ;
+            var url = isEditModel ? "/Artist/Update" : "/Artist/Add";
             webExpress.utility.ajax.request(url, model.Artist,
             function (response) {
-                viewModel.Artist.set("Id", response.Data);
-                console.dir(response);
-                _adminJs.openwinbox('#J_add-openbox');
+                if (isEditModel) {
+                    alert("保存成功");
+                }
+                else {
+                    viewModel.Artist.set("Id", response.Data);
+                    console.dir(response);
+                    _adminJs.openwinbox('#J_add-openbox');
+                }
+                
             },
             function () {
                 alert("error");

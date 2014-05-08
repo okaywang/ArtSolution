@@ -1,7 +1,7 @@
 ﻿@model ArtworkManageModel
 @{
     Layout = "~/Views/Shared/_ArtLayout.cshtml";
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "作品管理";
 }
 <script src="~/Scripts/Views/ArtworkList.js"></script>
 
@@ -14,6 +14,7 @@
             <span class="fl">作品分类：
                     <select id="ddlArtworkType">
                         <option value="" selected="selected">全部</option>
+
                         <option value="">国画</option>
                         <option value="">水墨画</option>
                         <option value="">当代画</option>
@@ -28,9 +29,19 @@
             </span>
             <span class="zz" id="ddlArtist">作者：
                     <select name="">
-                        <option value="" selected="selected">张三</option>
-                        <option value="">李四</option>
-                        <option value="">小清新</option>
+                        <option value="">全部</option>
+                        @for (int i = 0; i < Model.Artists.Count; i++)
+                        {
+                            var item = Model.Artists[i];
+                            if (item.Id.ToString() == Request.QueryString["ArtistId"])
+                            {
+                            <option value="@item.Id" selected="selected">@item.Name</option>    
+                            }
+                            else
+                            {
+                            <option value="@item.Id" >@item.Name</option>
+                            }
+                        }
                     </select>
             </span>
             <span class="srarchbtn">
@@ -83,7 +94,6 @@
     $(document).ready(function () {
         var viewInstance = new art.ui.view.ArtworkList();
         var domResolver = new art.ui.view.DomResolver();
-        art.ui.view.current = viewInstance;
 
 
         //弹框
@@ -98,7 +108,7 @@
         });
 
         //发布
-        $(document).on("click", ".J_issueBtn", function () { 
+        $(document).on("click", ".J_issueBtn", function () {
             adminjs.openwinbox('#J_issueBox');
             domResolver.setCurrentRecordElement($(this).closest("tr"));
             return false;
@@ -106,12 +116,12 @@
         });
 
         //删除作品
-        $(document).on("click", ".J_deletezpBtn", function () {  
+        $(document).on("click", ".J_deletezpBtn", function () {
             adminjs.openwinbox('#J_deletezpBox');
             domResolver.setCurrentRecordElement($(this).closest("tr"));
             return false;
         });
-        
+
         $(".confirmDelete").click(function () {
             var artworkId = domResolver.getRecordId();
             viewInstance.remove(artworkId);
