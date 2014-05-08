@@ -11,7 +11,9 @@ namespace Art.Data.Domain.Access.Mapping
     {
         public CustomerMap()
         {
-            
+            this.HasMany(c => c.Addresses)
+            .WithRequired(a => a.Customer)
+            .Map(x => x.MapKey("CustomerId"));
         }
     }
 }
