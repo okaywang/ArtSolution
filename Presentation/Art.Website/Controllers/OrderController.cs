@@ -53,6 +53,10 @@ namespace Art.Website.Controllers
             return View(model);
         }
 
+        public ActionResult AuctionList() 
+        {
+            return View();
+        }
 
         public ActionResult Index()
         {

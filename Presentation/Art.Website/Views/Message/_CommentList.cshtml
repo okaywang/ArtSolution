@@ -22,12 +22,12 @@
             <td align="left" class="J_commentNr text">@item.Text</td>
             <td class="state"><span class="t-gray">@item.State.ToString()</span></td>
             <td class="command">
-                @if (item.State == Art.Data.Domain.CommentState.Approving)
+                @if (item.State == Art.Data.Common.CommentState.Approving)
                 {
                 <a class="t-green approve" href="###">审核通过</a>
                 <a class="dele unApprove" href="###">审核不通过</a>    
                 }
-                else if (item.State == Art.Data.Domain.CommentState.Approved)
+                else if (item.State == Art.Data.Common.CommentState.Approved)
                 {
                     <a href="javascript:void(0)" class="J_reply">回复</a>
                 }

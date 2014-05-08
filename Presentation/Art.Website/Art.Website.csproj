@@ -190,6 +190,7 @@
     <Compile Include="Common\Config\ConfigSettings.cs" />
     <Compile Include="Common\ImageRouteHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\ArtworkController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -347,6 +348,8 @@
     <Content Include="Content\images\icon\img-x.psd" />
     <Content Include="Content\images\icon\sprite-icon.psd" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jquery.validate.additional-methods.js" />
+    <Content Include="Scripts\jquery.validate.additional-methods.min.js" />
     <Content Include="Scripts\Extension\jquery.validate.Extension.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -366,6 +369,7 @@
     <Content Include="Scripts\Kendo\kendo.web.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\jquery.validate.messages_zh.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Views\ArtistEdit.js" />
     <Content Include="Scripts\Views\ArtworkTypes.js" />
@@ -437,6 +441,10 @@
     <Content Include="Views\Message\_CommentList.cshtml" />
     <Content Include="Views\Artwork\_TypesList.cshtml" />
     <Content Include="Views\Order\List.cshtml" />
+    <Content Include="Views\Artist\Types.cshtml" />
+    <Content Include="Views\Auction\List.cshtml" />
+    <Content Include="Views\Order\AuctionList.cshtml" />
+    <Content Include="Views\AdminUser\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

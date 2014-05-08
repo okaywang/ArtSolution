@@ -111,10 +111,11 @@ namespace Art.Website.Controllers
         }
         #endregion
 
+        #region List Page
         public ActionResult List(ArtistSearchCriteria criteria)
         {
             var model = GetPagedArtistModel(criteria);
-            return PartialView("_List",model);
+            return PartialView("_List", model);
         }
 
         private PagedArtistModel GetPagedArtistModel(ArtistSearchCriteria criteria)
@@ -160,6 +161,13 @@ namespace Art.Website.Controllers
             };
             return model;
         }
-
+        #endregion
+         
+        #region Types Page
+        public ActionResult Types()
+        {
+            return View();
+        } 
+        #endregion
     }
 }
