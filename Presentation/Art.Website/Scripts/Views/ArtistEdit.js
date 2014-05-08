@@ -119,7 +119,8 @@
                 model.Artist.AvatarFileName = webExpress.utility.url.getFullUrl(model.Artist.AvatarFileName);
             }
 
-            model.ArtworkTypes.unshift({ Id: "", Name: "未选" });
+            model.ArtworkTypes.unshift({ Value: "", Text: "未选" });
+            model.Degrees.unshift({ Value: "", Text: "未选" });
         }
 
         function save(model) {

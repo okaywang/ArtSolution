@@ -26,8 +26,8 @@ namespace Art.Data.Domain.Access.Initializers
                 context.Set<Profession>().Add(prof);
             };
 
-            var genresString = "风景 人物 抽像 动物 植物 山水 其它";
-            var genres = genresString.Split(' ');
+            var genresString = "风景、肖像、海景、静物、自然、人物、运动、流行文化、文本、个人记忆、怀旧、建筑、政治、动物、叙事、幽默、花卉、其他";
+            var genres = genresString.Split('、');
             for (var i = 0; i < genres.Length; i++)
             {
                 var genre = new Genre
@@ -98,7 +98,7 @@ namespace Art.Data.Domain.Access.Initializers
             context.SaveChanges();
 
 
-            var artPlaces = new List<ArtPlace>() { new ArtPlace { Name = "卧室" }, new ArtPlace { Name = "客厅" }, new ArtPlace { Name = "餐厅" }, new ArtPlace { Name = "办公室" } };
+            var artPlaces = "卧室、餐厅、客厅、办公室、书房、酒吧".Split('、').Select(i => new ArtPlace { Name = i }).ToList(); // new List<ArtPlace>() { new ArtPlace { Name = "卧室" }, new ArtPlace { Name = "客厅" }, new ArtPlace { Name = "餐厅" }, new ArtPlace { Name = "办公室" } };
             context.Set<ArtPlace>().AddRange(artPlaces);
 
             var artPeriods = new List<ArtPeriod>() { new ArtPeriod { Name = "50 n" }, new ArtPeriod { Name = "60 n" }, new ArtPeriod { Name = "70 n" } };

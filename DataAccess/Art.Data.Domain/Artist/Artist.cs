@@ -6,10 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebExpress.Core;
 
 namespace Art.Data.Domain
 {
-    public class Artist : BaseEntity, IIdNameEntity, ISoftDelete
+    public class Artist : BaseEntity, IIdNameEntry, ISoftDelete
     {
         public Artist()
         {

@@ -33,7 +33,7 @@
                         <option value="">未选</option>
                         @foreach (var item in Model.SourceArtists)
                         {
-                            <option value="@item.Id">@item.Name</option>
+                            <option value="@item.Value">@item.Text</option>
                         }
                     </select>
                     <label for="@PropName(i => i.Artwork.ArtistId)" class="error t-errormessage">请选择作者</label>
@@ -54,7 +54,7 @@
             <dl class="clearfix control-group mandatory"  data-source="SourceArtMaterials" property-name="@PropName(i => i.Artwork.ArtMaterialId)" control-type="simpleDropdown">
                 <dt><i>*</i>材质:</dt>
                 <dd>
-                    <select data-value-field="Id" data-text-field="Name">
+                    <select data-value-field="Value" data-text-field="Text">
                         <option value="">未选</option>
                         @*@foreach (var item in Model.SourceGenres)
 						{
@@ -71,7 +71,7 @@
                         <option value="">未选</option>
                         @foreach (var item in Model.SourceArtPeriods)
                         {
-                            <option value="@item.Id">@item.Name</option>    
+                            <option value="@item.Value">@item.Text</option>    
                         }
                     </select>
                     <label for="@PropName(i => i.Artwork.PeriodId)" class="error t-errormessage">请选择年代</label>
@@ -84,7 +84,7 @@
                         <option value="">未选</option>
                         @foreach (var item in Model.SourceArtworkTypes)
                         {
-                            <option value="@item.Id">@item.Name</option>    
+                            <option value="@item.Value">@item.Text</option>    
                         }
                     </select>
                     <label for="@PropName(i => i.Artwork.ArtworkTypeId)" class="error t-errormessage">请选择作品分类</label>
@@ -97,7 +97,7 @@
                         <option value="">未选</option>
                         @foreach (var item in Model.SourceGenres)
                         {
-                            <option value="@item.Id">@item.Name</option>    
+                            <option value="@item.Value">@item.Text</option>    
                         }
                     </select>
                     <label for="@PropName(i => i.Artwork.GenreId)" class="error t-errormessage">请选择题材</label>
@@ -106,7 +106,7 @@
             <dl class="clearfix control-group" data-source="SourceArtShapes" property-name="@PropName(i => i.Artwork.ArtShapeId)" control-type="simpleDropdown">
                 <dt><i>*</i>形制:</dt>
                 <dd>
-                    <select data-value-field="Id" data-text-field="Name">
+                    <select data-value-field="Value" data-text-field="Text">
                         <option value="">未选</option>
                     </select>
                 </dd>
@@ -114,7 +114,7 @@
             <dl class="clearfix control-group" data-source="SourceArtTechniques" property-name="@PropName(i => i.Artwork.ArtTechniqueId)" control-type="simpleDropdown">
                 <dt><i>*</i>技法:</dt>
                 <dd>
-                    <select data-value-field="Id" data-text-field="Name">
+                    <select data-value-field="Value" data-text-field="Text">
                         <option value="">未选</option>
                     </select>
                 </dd>
@@ -131,8 +131,7 @@
                     @foreach (var item in Model.SourceArtPlaces)
                     {
                         <span>
-                            <input type="checkbox" name="" value="@item.Id" />
-                            @item.Name</span>    
+                            <input type="checkbox" name="" value="@item.Value" />@item.Text</span>    
                     }
                     <label for="@PropName(i => i.Artwork.SuitablePlaceIds)" class="error t-errormessage">请选择适用空间</label>
                 </dd>
@@ -151,8 +150,7 @@
                     @foreach (var item in Model.SourceAuctionTypes)
                     {
                         <span>
-                            <input type="radio" name="" value="@item.Id" />
-                            @item.Name</span>                        
+                            <input type="radio" name="" value="@item.Value" />@item.Text</span>                        
                     }
                     <label for="@PropName(i => i.Artwork.AuctionTypeId)" class="error t-errormessage">请选择拍卖方式</label>
                 </dd>

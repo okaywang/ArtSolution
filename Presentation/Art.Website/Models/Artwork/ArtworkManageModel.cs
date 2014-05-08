@@ -14,7 +14,7 @@ namespace Art.Website.Models
         {
         }
 
-        public IList<IdNameModel> Artists { get; set; }
+        public IList<ValueTextEntry> Artists { get; set; }
         public PagedArtworkModel PagedArtworks { get; set; }
     }
 

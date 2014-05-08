@@ -105,7 +105,7 @@
                 if (item.field == "Artwork.ArtworkTypeId") {
                     var artworkTypeId = item.sender.get();
                     var artworkType = $.grep(model.SourceArtworkTypes, function (element, index) {
-                        return element.Id == artworkTypeId;
+                        return element.Value == artworkTypeId;
                     })[0];
 
                     var materials = getArtworkTypeSubItem(artworkType, "ArtMaterials");
@@ -126,7 +126,7 @@
         }
 
         function getArtworkTypeSubItem(artworkType, itemTypeName) {
-            var sourceItems = [{ Id: "", Name: "未选" }];
+            var sourceItems = [{ Value: "", Text: "未选" }];
             if (!artworkType) {
                 return sourceItems;
             }

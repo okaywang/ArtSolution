@@ -8,10 +8,10 @@ namespace Art.Data.Common
 {
     public enum Degree
     {
-        None,
-        专科,
+        大专,
         本科,
-        硕士,
-        博士
+        研究生,
+        博士,
+        海归
     }
 }

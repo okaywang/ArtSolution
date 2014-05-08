@@ -158,7 +158,7 @@ namespace Art.Website.Controllers
                 Artist = ArtistTranslator.Instance.Translate(artist),
                 SourceProfessions = ProfessionTranslator.Instance.Translate(professions).ToArray(),
                 SourceGenres = GenreTranslator.Instance.Translate(genres).ToArray(),
-                Degrees = EnumExtenstion.GetValueTexts<Degree>(),
+                Degrees = EnumExtenstion.GetEnumItems<Degree>(),
                 ArtworkTypes = IdNameModelTranslator<ArtworkType>.Instance.Translate(artworkTypes).ToArray()
             };
             return model;

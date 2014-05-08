@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebExpress.Core;
+using WebExpress.Core.Enums;
 using WebExpress.Core.TypeExtensions;
 
 namespace Art.Website.Models
@@ -15,9 +17,9 @@ namespace Art.Website.Models
 
         public GenreModel[] SourceGenres { get; set; }
 
-        public ValueText[] Degrees { get; set; }
+        public IEnumItem[] Degrees { get; set; }
 
-        public IdNameModel[] ArtworkTypes { get; set; }
+        public ValueTextEntry[] ArtworkTypes { get; set; }
     }
 
 }
